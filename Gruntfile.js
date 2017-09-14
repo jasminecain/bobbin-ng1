@@ -13,22 +13,22 @@ module.exports = function(grunt) {
         globalstrict: true,
         globals: {"angular": true, "app": true}
       },
-      files: ['../app/**/*.js']
+      files: ['app/**/*.js']
     },
     sass: {
       dist: {
         files: {
-          '../css/main.css': '../sass/main.scss'
+          'app/styles/css/main.css': 'app/styles/sass/main.scss'
         }
       }
     },
     watch: {
       javascripts: {
-        files: ['../app/**/*.js'],
+        files: ['app/**/*.js'],
         tasks: ['jshint']
       },
       sass: {
-        files: ['../sass/**/*.scss'],
+        files: ['app/styles/sass/**/*.scss'],
         tasks: ['sass']
       }
     }
