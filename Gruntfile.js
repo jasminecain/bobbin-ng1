@@ -5,20 +5,31 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    browserify: {
+      js: {
+        src: ['app/app.js'],
+        dest: 'dist/app.js'
+      },
+      options: {
+        browserifyOptions: {
+          paths: ['./node_modules']
+        }
+      }
+    },
     jshint: {
       options: {
-        predef: [ "document", "console", "$", "$scope", "firebase" ],
+        predef: ['document', 'console', '$', '$scope', 'firebase'],
         esnext: true,
         debug: true,
         globalstrict: true,
-        globals: {"angular": true, "app": true}
+        globals: {'angular': true, 'app': true}
       },
       files: ['app/**/*.js']
     },
     sass: {
       dist: {
         files: {
-          'app/styles/css/main.css': 'app/styles/sass/main.scss'
+          'app/styles/css/app.css': 'app/styles/sass/app.scss'
         }
       }
     },

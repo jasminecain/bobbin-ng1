@@ -1,35 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Bobbin App</title>
-  <!-- Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="app/styles/css/main.css">
-</head>
+<html ng-app="BobbinApp">
+  <head>
+    <title>Bobbin App</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/css/app.css">
+  </head>
 
-<body>
-  <div ng-app="BobbinApp">
-    <div ng-include="''"></div>
-    <p>Bobbin</p>
-  </div>
+  <body>
+    <ng-view></ng-view>
 
-  <footer>
-      © 2017 Jasmine Quach
-  </footer>
-  <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+    <footer>© 2017 Jasmine Quach</footer>
 
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
 
-  <script src="app/app.js"></script>
-  <script src="/app/values/fb-creds.js"></script>
+    <!-- <script type="text/javascript" src="node_modules/firebase/firebase.js"></script> -->
+    <script src="app/app.js"></script>
+    <!-- <script src="/app/values/fb-creds.js"></script> -->
 
-  <!-- factories -->
-  <!-- <script src="./app/factories/.js"></script> -->
-
-  <!-- controllers -->
-
+    <!-- factories -->
+    <!-- <script src="./app/factories/.js"></script> -->
+    <!-- controllers -->
   </body>
 </html>
