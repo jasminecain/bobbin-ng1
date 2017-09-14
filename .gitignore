@@ -4,6 +4,7 @@
 /dist
 /tmp
 app/values
+app/styles/css
 
 # dependencies
 /node_modules
