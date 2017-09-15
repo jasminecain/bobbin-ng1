@@ -3,23 +3,34 @@
   <head>
     <title>Bobbin App</title>
     <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="app/styles/css/app.css">
   </head>
 
   <body>
-    <ng-view></ng-view>
+    <ui-view></ui-view>
 
-    <footer>© 2017 Jasmine Quach</footer>
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
 
-    <!-- <script type="text/javascript" src="node_modules/firebase/firebase.js"></script> -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script src="app/app.js"></script>
-    <!-- <script src="/app/values/fb-creds.js"></script> -->
+    <script type="text/javascript" src="app/scripts/components/login/login-component.js"></script>
+    <script type="text/javascript" src="app/scripts/components/projects/projects-component.js"></script>
+    <!-- <script type="text/javascript" src="app/scripts/components/search-bar/search-bar-component.js"></script>
+    <script type="text/javascript" src="app/scripts/components/footer/footer-component.js"></script> -->
+    <script src="app/values/fb-creds.js"></script>
 
     <!-- factories -->
-    <!-- <script src="./app/factories/.js"></script> -->
+    <script src="app/factories/auth-factory.js"></script>
+
     <!-- controllers -->
+
   </body>
 </html>
