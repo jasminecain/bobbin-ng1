@@ -1,0 +1,36 @@
+{
+  "projects": {
+    "-Project1": {
+      "title": "pr0je3cT title 1",
+      "uid": "81JlvzardJXLxvSJIXVz2vfUCDy2",
+      "img": null,
+      "description": null,
+      "url": null,
+      "supplylist": [],
+      "photos": []
+    },
+    "-Project2": {
+      "title": "pr0je3cT title 2",
+      "uid": "i7YVsGY8vbYmS2DcnB5hg2Klwt92",
+      "img": null,
+      "description": null,
+      "url": null,
+      "supplylist": [],
+      "photos": []
+    }
+  },
+  "users": {
+    "1": {
+      "name": "user 1",
+      "uid": "81JlvzardJXLxvSJIXVz2vfUCDy2",
+      "email": null,
+      "photo": null
+    },
+    "2": {
+      "name": "user 2",
+      "uid": "i7YVsGY8vbYmS2DcnB5hg2Klwt92",
+      "email": null,
+      "photo": null
+    }
+  }
+}
