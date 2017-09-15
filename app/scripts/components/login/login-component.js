@@ -9,8 +9,8 @@ bobbin.component('loginComponent', {
       authFactory.authWithProvider()
         .then(function(result) {
           let user = result.user.uid;
-          // console.log('user: ', user);
-          // console.log('user result: ', result);
+          console.log('user: ', user);
+          console.log('user result: ', result);
           $state.go('projects.items');
           // $scope.$apply();
         }).catch(function(error) {
