@@ -1,38 +1,36 @@
 {
-"projects": {
-    "-JszuqdO": {
-        "title": "pr0je3cT title 1",
-        "uid": "81JlvzardJXLxvSJIXVz2vfUCDy2",
-        "img": "",
-        "description": "",
-        "url": "",
-        "items": "",
-        "photos": "",
-        "projectid": "-Jsz51q_BB5x_SlNuqdO"
+  "projects": {
+    "-Project1": {
+      "title": "pr0je3cT title 1",
+      "uid": "81JlvzardJXLxvSJIXVz2vfUCDy2",
+      "img": null,
+      "description": null,
+      "url": null,
+      "supplylist": [],
+      "photos": []
     },
-    "-JszD5tNe5xiS": {
-        "title": "pr0je3cT title 2",
-        "uid": "i7YVsGY8vbYmS2DcnB5hg2Klwt92",
-        "img": "",
-        "description": "",
-        "url": "",
-        "items": "",
-        "photos": "",
-        "boardid": "-JszD5oWTGIVFVQtNe5xiS"
+    "-Project2": {
+      "title": "pr0je3cT title 2",
+      "uid": "i7YVsGY8vbYmS2DcnB5hg2Klwt92",
+      "img": null,
+      "description": null,
+      "url": null,
+      "supplylist": [],
+      "photos": []
     }
-},
-"users": {
+  },
+  "users": {
     "1": {
-        "name": "user 1",
-        "uid": "81JlvzardJXLxvSJIXVz2vfUCDy2",
-        "email": "",
-        "photo": ""
+      "name": "user 1",
+      "uid": "81JlvzardJXLxvSJIXVz2vfUCDy2",
+      "email": null,
+      "photo": null
     },
     "2": {
-        "name": "user 2",
-        "uid": "i7YVsGY8vbYmS2DcnB5hg2Klwt92",
-        "email": "",
-        "photo": ""
+      "name": "user 2",
+      "uid": "i7YVsGY8vbYmS2DcnB5hg2Klwt92",
+      "email": null,
+      "photo": null
     }
   }
 }
