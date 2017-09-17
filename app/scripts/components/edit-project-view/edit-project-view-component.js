@@ -7,6 +7,7 @@ bobbin.component('editProjectComponent', {
 
     $scope.title = 'Edit Project';
     $scope.submitButtonText = 'Edit Item';
+    let user = authFactory.getCurrentUser();
 
     $scope.project = {
       title: null,

@@ -39,14 +39,14 @@ const bobbin = angular.module('BobbinApp', [
     }
   })
 
-  // .state('projects.detail', {
-  //   url: '/projects',
-  //   views: {
-  //     'projects': {
-  //       component
-  //     }
-  //   }
-  // })
+  .state('projects.detail', {
+    url: '/projects/:projectsId',
+    views: {
+      'projectsDetail': {
+        component: 'projectDetailComponent'
+      }
+    }
+  })
 
   .state('profile', {
     abstract: true,
@@ -58,6 +58,34 @@ const bobbin = angular.module('BobbinApp', [
     views: {
       'profile': {
         component: 'profileViewComponent'
+      }
+    }
+  })
+
+  .state('edit.project', {
+    abstract: true,
+    templateUrl: 'app/templates/pages/edit-project-view.html'
+  })
+
+  .state('edit.project.view', {
+    url: '/edit.project',
+    views: {
+      'edit.project': {
+        component: 'editProjectComponent'
+      }
+    }
+  })
+
+  .state('photo.gallery', {
+    abstract: true,
+    templateUrl: 'app/templates/pages/photo-gallery-view.html'
+  })
+
+  .state('photo.gallery.view', {
+    url: '/photo.gallery',
+    views: {
+      'photo.gallery': {
+        component: 'photoGalleryComponent'
       }
     }
   });
