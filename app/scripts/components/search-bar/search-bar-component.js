@@ -2,6 +2,6 @@
 
 bobbin.component('searchBarComponent', {
 
-  templateUrl: 'app/scripts/search-bar/search-bar.html',
+  templateUrl: 'app/scripts/components/search-bar/search-bar.html',
   controller: function() {}
 });
