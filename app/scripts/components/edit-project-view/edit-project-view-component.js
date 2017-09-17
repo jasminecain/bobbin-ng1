@@ -20,7 +20,7 @@ bobbin.component('editProjectComponent', {
     const showEditProject = function() {
       projectFactory.getSingleProject($routeParams.itemId)
       .then((data) => {
-        console.log('data', data);
+        console.log('showEditProjectData', data);
         $scope.title = data;
         $scope.title.id = $routeParams.itemId;
       });
@@ -30,7 +30,7 @@ bobbin.component('editProjectComponent', {
       projectFactory.editProject($routeParams.itemId, $scope.task)
       .then((data) => {
         $state.go('projects.items');
-        console.log('data', data);
+        console.log('submitEditedProjectData', data);
       });
     };
 

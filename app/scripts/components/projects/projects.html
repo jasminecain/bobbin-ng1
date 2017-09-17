@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col s12 m8">
     <div class="card project-form">
-      <h3>{{title}}</h3>
+      <h3>{{project.title}}</h3>
       <form>
       <div>
         <div input-field>
@@ -29,7 +29,9 @@
           <input placeholder="Add project photos" id="project-photos" type="text" class="validate" ng-model="project.photos">
         </div>
         <br><br>
-        <a class="waves-effect light-blue btn" class="btn btn-default" ng-click="submitProject()">{{submitButtonText}}</a>
+        <a class="waves-effect light-blue btn" class="btn btn-default" ng-click="submitProject()">
+          Add Project
+        </a>
         <a class="waves-effect light-blue btn" class="btn btn-default">Cancel</a>
       </div>
       </form>

@@ -3,14 +3,22 @@
 bobbin.factory('authFactory', function() {
 
   let currentUser = null;
+  let addNewUserRegisteredObj = [];
 
-  const isAuthenticated = function (){
-    console.log('userFactory: isAuthenticated');
-    return new Promise ( (resolve, reject) => {
-      firebase.auth().onAuthStateChanged( (user) => {
-        if (user){
+  const isAuthenticated = function() {
+    // console.log('authFactory: isAuthenticated');
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          let userObj = {
+            userName: user.displayName,
+            userEmail: user.email,
+            userPhoto: user.photoURL
+          };
+
+          addNewUserRegisteredObj.push(userObj);
           currentUser = user.uid;
-          console.log('user', user.uid);
+          console.log('User: ', user.email, user.uid);
           resolve(true);
         } else {
           resolve(false);
@@ -19,8 +27,12 @@ bobbin.factory('authFactory', function() {
     });
   };
 
-  const getCurrentUser = function(){
+  const getCurrentUser = function() {
     return currentUser;
+  };
+
+  const getNewUserRegisteredInfo = function() {
+    return addNewUserRegisteredObj;
   };
 
   const logIn = function(userObj) {
@@ -37,7 +49,7 @@ bobbin.factory('authFactory', function() {
     .catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-      console.log('error', errorCode, errorMessage);
+      console.log('register error', errorCode, errorMessage);
     });
   };
 
@@ -47,5 +59,5 @@ bobbin.factory('authFactory', function() {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  return { isAuthenticated, getCurrentUser, logIn, logOut, register, authWithProvider, };
+  return { isAuthenticated, getCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
 });
