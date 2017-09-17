@@ -34,7 +34,45 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     });
   };
 
-  return { getProjects, addProject };
+  const editProject = function(id, obj) {
+    console.log('id and object', id, obj);
+    return $q((resolve, reject) => {
+      let newObj = JSON.stringify(obj);
+      $http.patch(`${FBCreds.databaseURL}/items/${id}.json`, newObj)
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
+  };
+
+  const getSingleProject = function(itemId) {
+    return $q((resolve, reject) => {
+      $http.get(`${FBCreds.databaseURL}/items/${itemId}.json`)
+      .then((itemObj) => {
+        resolve(itemObj.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
+  };
+
+  const deleteProject = function(id) {
+    return $q((resolve, reject) => {
+      $http.delete(`${FBCreds.databaseURL}/items/${id}.json`)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
+  };
+
+  return { getProjects, addProject, editProject, getSingleProject, deleteProject };
 
 });
 
