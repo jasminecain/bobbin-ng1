@@ -37,7 +37,7 @@ const bobbin = angular.module('BobbinApp', [
         component: 'projectsComponent'
       }
     }
-  });
+  })
 
   // .state('projects.detail', {
   //   url: '/projects',
@@ -47,6 +47,21 @@ const bobbin = angular.module('BobbinApp', [
   //     }
   //   }
   // })
+
+  .state('profile', {
+    abstract: true,
+    templateUrl: 'app/templates/pages/profile-view.html'
+  })
+
+  .state('profile.view', {
+    url: '/profile',
+    views: {
+      'profile': {
+        component: 'profileViewComponent'
+      }
+    }
+  });
+
 }])
 
 .run(function(FBCreds) {
