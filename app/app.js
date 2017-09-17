@@ -1,6 +1,7 @@
 'use strict';
 
 const bobbin = angular.module('BobbinApp', [
+  'ui.materialize',
   'ui.router',
   'ui.router.state.events'
 ])

@@ -5,22 +5,30 @@ bobbin.component('projectsComponent', {
   templateUrl: 'app/scripts/components/projects/projects.html',
   controller: function(authFactory, projectFactory, $state, $scope) {
 
-    let user = authFactory.getCurrentUser();
+    $scope.project = {};
 
-    $scope.project = {
-      title: null,
-      uid: user,
-      img: null,
-      description: null,
-      url: null,
-    };
+    // $scope.project = {
+      //   title: null,
+      //   uid: user,
+      //   img: null,
+      //   description: null,
+      //   url: null,
+      // };
 
-    $scope.submitProject = function() {
-      projectFactory.addProject($scope.project)
+    $scope.submitProject = function(project) {
+      let userId = authFactory.getCurrentUser();
+      project.uid = userId;
+
+      projectFactory.addProject(project)
         .then((data) => {
-          $state.go('projects.items');
           console.log('submitData', data);
+          $state.go('projects.items');
         });
     };
+
+    $scope.clearForm = function() {
+      $scope.project = {};
+    };
+
   }
 });
