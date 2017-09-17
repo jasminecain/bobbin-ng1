@@ -2,6 +2,6 @@
 
 bobbin.component('footerComponent', {
 
-  templateUrl: 'app/scripts/footer/footer-component.js',
+  templateUrl: 'app/scripts/components/footer/footer.html',
   controller: function() {}
 });

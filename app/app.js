@@ -4,7 +4,7 @@ const bobbin = angular.module('BobbinApp', [
   'ui.router'
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, authFactory, loginComponent) {
 
   //page doesn't exist, back to route
   $urlRouterProvider.otherwise('/');
@@ -57,4 +57,18 @@ const bobbin = angular.module('BobbinApp', [
       databaseURL: creds.databaseURL
   };
   firebase.initializeApp(authConfig);
+
+  let isAuth = (authFactory) => new Promise((resolve, reject) => {
+    console.log("authFactory is", authFactory);
+    authFactory.isAuthenticated()
+      .then((userExists) => {
+        if (userExists) {
+          console.log("Authenticated, go ahead");
+          resolve();
+        } else {
+          console.log("Authentication reject, GO AWAY");
+          reject();
+        }
+      });
+  });
 });
