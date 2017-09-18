@@ -2,14 +2,14 @@
 
 bobbin.factory('projectFactory', function($q, $http, FBCreds) {
 
-  const getProjects = function(user) {
+  const getAllProjects = function(user) {
     let projects = [];
-    console.log(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`);
+    // console.log(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`);
     return $q ((resolve, reject) => {
       $http.get(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`)
       .then((itemObject) => {
         let itemCollection = itemObject.data;
-        console.log('itemCollection?', itemCollection);
+        // console.log('itemCollection?', itemCollection);
         Object.keys(itemCollection).forEach((key) => {
           itemCollection[key].id = key;
           projects.push(itemCollection[key]);
@@ -72,6 +72,6 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     });
   };
 
-  return { getProjects, addProject, editProject, getSingleProject, deleteProject };
+  return { getAllProjects, addProject, editProject, getSingleProject, deleteProject };
 
 });

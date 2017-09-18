@@ -28,8 +28,12 @@ bobbin.factory('authFactory', function($http, FBCreds) {
   };
 
 const getCurrentUser = function() {
-  return isAuthenticated();
+  return currentUser;
 };
+
+const setCurrentUser = function(id) {
+  currentUser = id;
+}
 
 const getNewUserRegisteredInfo = function() {
   return addNewUserRegisteredObj;
@@ -55,7 +59,7 @@ const getNewUserRegisteredInfo = function() {
         userPhoto: userObj.photoURL
       };
       debugger;
-      addUserInfotoFB.push(addUserInfotoFB);
+      aaddUserInfo.push(addUserInfotoFB);
       console.log('userObjFB.uid', addUserInfotoFB);
       let newObj = JSON.stringify(addUserInfotoFB);
       return $http.post(`${FBCreds.databaseURL}/users.json`, newObj)
@@ -81,5 +85,5 @@ const getNewUserRegisteredInfo = function() {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  return { isAuthenticated, getCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
+  return { isAuthenticated, getCurrentUser, setCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
 });

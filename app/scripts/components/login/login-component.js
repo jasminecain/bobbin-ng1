@@ -15,6 +15,7 @@ bobbin.component('loginComponent', {
       authFactory.authWithProvider()
         .then(function(result) {
           let user = result.user.uid;
+          authFactory.setCurrentUser(user);
           console.log('loginGoogleuser: ', user);
           // console.log('loginGoogleuser result: ', result);
           $state.go('projects.items');

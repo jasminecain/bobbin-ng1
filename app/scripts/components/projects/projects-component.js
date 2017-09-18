@@ -10,18 +10,7 @@ bobbin.component('projectsComponent', {
 
     // $rootScope.showSearch = true;
     // $scope.searchText = searchFactory;
-
-    $scope.init = function() {
-    $scope.getProjectData()
-      .then((data) => {
-        $scope.projects = data;
-        $scope.$apply();
-        debugger;
-        console.log($scope.user);
-      });
-    };
-
-    $scope.project = {
+    $scope.projects = {
         title: null,
         uid: user,
         img: null,
@@ -30,15 +19,27 @@ bobbin.component('projectsComponent', {
         // projectid: $routeParams.itemId
       };
 
-    $scope.getUserData = () => {
-      return authFactory.getCurrentUser()
-        .then((data) => {
-          return data;
-        });
-    };
+    // $scope.init = function() {
+    // $scope.getProjectData()
+    //   .then((data) => {
+    //     $scope.projects = data;
+    //     console.log('$scope.projectdata', data)
+    //     $scope.$apply();
+    //     debugger;
+    //     console.log($scope.user);
+    //   });
+    // };
+
+    // $scope.getUserData = () => {
+    //   return authFactory.getCurrentUser()
+    //     .then((data) => {
+    //       return data;
+    //     });
+    // };
 
     const showAllProjects = function () {
-      projectFactory.getProjects(user)
+      // console.log('user', user);
+      projectFactory.getAllProjects(user)
         .then((projects) => {
           console.log("showAllProjects", projects);
           $scope.projects = projects;
@@ -54,7 +55,10 @@ bobbin.component('projectsComponent', {
 
     $scope.submitProject = function(project) {
       let user = authFactory.getCurrentUser();
-      project.uid = user.uid;
+      project.uid = user;
+      console.log('project.uid', project.uid);
+      console.log('user', user);
+
 
       projectFactory.addProject(project)
         .then((data) => {
