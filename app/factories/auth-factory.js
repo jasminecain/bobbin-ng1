@@ -15,10 +15,11 @@ bobbin.factory('authFactory', function($http, FBCreds) {
             userEmail: user.email,
             userPhoto: user.photoURL
           };
-          // console.log('userObj',userObj);
+          console.log('userObj',userObj);
           addNewUserRegisteredObj.push(userObj);
+          // debugger;
           currentUser = user.uid;
-          console.log('User: ', user.email, user.uid);
+          console.log('isAuthenticated User ', user.email, user.uid);
           resolve(user);
         } else {
           resolve(false);

@@ -60,7 +60,7 @@
         <p><a href="#">{{item.url}}</a></p>
         <h4>{{item.supplylist}}</h4>
         <div class="style-icon" id="editProject"><a ui-sref="#!/projects.detail/{{item.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
-        <div class="style-icon" id="deleteProject"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
+        <div class="style-icon" id="deleteProject" ng-click="deleteProject()"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
       </div>
     </div>
   </div>
