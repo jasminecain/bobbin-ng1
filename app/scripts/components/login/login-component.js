@@ -15,12 +15,12 @@ bobbin.component('loginComponent', {
       authFactory.authWithProvider()
         .then(function(result) {
           let user = result.user.uid;
-          console.log('user: ', user);
-          console.log('user result: ', result);
+          // console.log('loginGoogleuser: ', user);
+          // console.log('loginGoogleuser result: ', result);
           $state.go('projects.items');
           // $scope.$apply();
         }).catch(function(error) {
-          console.log(error);
+          console.log('GoogleLogInError', error);
           let errorCode = error.code;
           let errorMessage = error.message;
         });
@@ -39,13 +39,13 @@ bobbin.component('loginComponent', {
     };
 
     $scope.register = () => {
-      console.log('clicked register');
+      // console.log('clicked register');
       authFactory.register({
         email: $scope.account.email,
         password: $scope.account.password
       })
       .then((userData) => {
-        console.log('register newUser', userData);
+        console.log('register newUserData', userData);
         $scope.logIn();
       }, (error) => {
         console.log('registerError', error);

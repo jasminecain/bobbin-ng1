@@ -38,7 +38,7 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     console.log('id and object', id, obj);
     return $q((resolve, reject) => {
       let newObj = JSON.stringify(obj);
-      $http.patch(`${FBCreds.databaseURL}/items/${id}.json`, newObj)
+      $http.patch(`${FBCreds.databaseURL}/projects/${id}.json`, newObj)
       .then((data) => {
         resolve(data);
       })
@@ -50,7 +50,7 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
 
   const getSingleProject = function(itemId) {
     return $q((resolve, reject) => {
-      $http.get(`${FBCreds.databaseURL}/items/${itemId}.json`)
+      $http.get(`${FBCreds.databaseURL}/projects/${itemId}.json`)
       .then((itemObj) => {
         resolve(itemObj.data);
       })
@@ -62,7 +62,7 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
 
   const deleteProject = function(id) {
     return $q((resolve, reject) => {
-      $http.delete(`${FBCreds.databaseURL}/items/${id}.json`)
+      $http.delete(`${FBCreds.databaseURL}/projects/${id}.json`)
       .then((response) => {
         resolve(response);
       })
@@ -75,6 +75,3 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
   return { getProjects, addProject, editProject, getSingleProject, deleteProject };
 
 });
-
-//add project!!!
-

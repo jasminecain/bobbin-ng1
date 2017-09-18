@@ -3,15 +3,23 @@
 bobbin.factory('authFactory', function() {
 
   let currentUser = null;
+  let addNewUserRegisteredObj = [];
 
-  const isAuthenticated = function (){
-    console.log('userFactory: isAuthenticated');
-    return new Promise ( (resolve, reject) => {
-      firebase.auth().onAuthStateChanged( (user) => {
-        if (user){
-          currentUser = user.uid;
-          console.log('user', user.uid);
-          resolve(true);
+  const isAuthenticated = function() {
+    // console.log('authFactory: isAuthenticated');
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          let userObj = {
+            userName: user.displayName,
+            userEmail: user.email,
+            userPhoto: user.photoURL
+          };
+          // console.log('userObj',userObj);
+          addNewUserRegisteredObj.push(userObj);
+          currentUser = user;
+          // console.log('User: ', user.email, user.uid);
+          resolve(user);
         } else {
           resolve(false);
         }
@@ -19,9 +27,14 @@ bobbin.factory('authFactory', function() {
     });
   };
 
-  const getCurrentUser = function(){
-    return currentUser;
-  };
+const getCurrentUser = function() {
+  return isAuthenticated();
+};
+
+const getNewUserRegisteredInfo = function() {
+  return addNewUserRegisteredObj;
+};
+// addNewUserRegisteredObj
 
   const logIn = function(userObj) {
     return firebase.auth().signInWithEmailAndPassword(userObj.email, userObj.password);
@@ -37,7 +50,7 @@ bobbin.factory('authFactory', function() {
     .catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-      console.log('error', errorCode, errorMessage);
+      console.log('register error', errorCode, errorMessage);
     });
   };
 
@@ -47,5 +60,5 @@ bobbin.factory('authFactory', function() {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  return { isAuthenticated, getCurrentUser, logIn, logOut, register, authWithProvider, };
+  return { isAuthenticated, getCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
 });

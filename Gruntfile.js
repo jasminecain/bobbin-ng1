@@ -33,7 +33,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    connect: {
+      server: {
+        options: {
+          base: '../',
+          hostname: 'localhost',
+          port: 8080,
+          livereload: true,
+          open: true
+        }
+      }
+    },
     watch: {
+      options: {
+        livereload: true
+      },
+      index: {
+          files: [
+            "app/**/*.html"
+          ]
+        },
       javascripts: {
         files: ['app/**/*.js'],
         tasks: ['jshint']
