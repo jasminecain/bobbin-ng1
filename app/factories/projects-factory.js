@@ -4,9 +4,9 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
 
   const getProjects = function(user) {
     let projects = [];
-    console.log(`${FBCreds.databaseURL}/projects.json?orderBy=uid&equalTo=${user}`);
+    console.log(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`);
     return $q ((resolve, reject) => {
-      $http.get(`${FBCreds.databaseURL}/projects.json?orderBy=uid&equalTo=${user}`)
+      $http.get(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`)
       .then((itemObject) => {
         let itemCollection = itemObject.data;
         console.log('itemCollection?', itemCollection);

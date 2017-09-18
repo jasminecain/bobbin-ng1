@@ -6,13 +6,16 @@ bobbin.component('profileViewComponent', {
   controller: function(authFactory, $scope, $state) {
 
     //On profile view initialize get user data and store in scope
-      $scope.init = function() {
-      $scope.getUserData()
-        .then((data) => {
-          $scope.user = data;
-          $scope.$apply();
-          console.log($scope.user);
-        });
+    $scope.init = function() {
+    $scope.getUserData()
+      .then((data) => {
+        $scope.user = data;
+        $scope.$apply();
+        // console.log($scope.user);
+      });
+        $scope.editProfile = function() {
+          $scope.apply($scope.user);
+        };
     };
 
     $scope.logOut = () => {
@@ -21,6 +24,7 @@ bobbin.component('profileViewComponent', {
           $state.go('root');
         });
     };
+
 
     $scope.getUserData = () => {
       return authFactory.getCurrentUser()

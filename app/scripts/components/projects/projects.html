@@ -45,8 +45,10 @@
   </div>
 </div>
 
+<button type="button" class="waves-effect light-blue btn modal-close" ui-sref="/projects/:projectsId">TEST Project Detail</button>
+
 <!-- get project details view showing with cards repeated -->
-<div class="row" ng-repeat="item in projects | filter:searchText">
+<div class="row">
   <div class="col s12 m4">
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
@@ -57,15 +59,24 @@
         <p>{{project.description}}</p>
         <p><a href="#">{{project.url}}</a></p>
         <h4>{{project.supplylist}}</h4>
-        <div class="style-icon" id="editProject"><a ui-sref="#!/task/{{project.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
+        <div class="style-icon" id="editProject"><a ui-sref="#!/projects/{{project.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
         <div class="style-icon" id="deleteProject"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
       </div>
     </div>
   </div>
 </div>
 
-<button class="btn btn-info"><a ng-href="#!/task/{{task.id}}/edit">Edit</a></button>
-</div>
+<!-- project.whatever displays upon submit -->
+  <!-- "{"title":"ptitle","img":"pimage","description":"pdesc","url":"purl","supplylist":"psupply","photos":"photos"}
+  data
+  :
+  "{"title":"whatttt","img":"whatttt","description":"whatttt","url":"whatttt","supplylist":"whatttt","photos":"whatttt"} -->
 
-<!-- how to do  -->
-#!/task/{{task.id}
+<!-- ng-repeat="item in projects | filter:searchText" -->
+<!-- <button class="btn btn-info"><a ng-href="#!/task/{{task.id}}/edit">Edit</a></button>
+</div> -->
+
+<!-- how to do #!/task/{{task.id} -->
+
+<!-- CLEAR FORM BUTTON AFTER ENTER -->
+<!-- cancel button is not clearing the first line/ -->
