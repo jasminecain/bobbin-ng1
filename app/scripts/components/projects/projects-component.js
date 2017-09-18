@@ -56,8 +56,8 @@ bobbin.component('projectsComponent', {
     $scope.submitProject = function(project) {
       let user = authFactory.getCurrentUser();
       project.uid = user;
-      console.log('project.uid', project.uid);
-      console.log('user', user);
+      // console.log('project.uid', project.uid);
+      // console.log('user', user);
 
 
       projectFactory.addProject(project)

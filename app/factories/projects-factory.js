@@ -34,31 +34,31 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     });
   };
 
-  const editProject = function(id, obj) {
-    console.log('id and object', id, obj);
-    return $q((resolve, reject) => {
-      let newObj = JSON.stringify(obj);
-      $http.patch(`${FBCreds.databaseURL}/projects/${id}.json`, newObj)
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-    });
-  };
+  // const editProject = function(id, obj) {
+  //   console.log('id and object', id, obj);
+  //   return $q((resolve, reject) => {
+  //     let newObj = JSON.stringify(obj);
+  //     $http.patch(`${FBCreds.databaseURL}/projects/${id}.json`, newObj)
+  //     .then((data) => {
+  //       resolve(data);
+  //     })
+  //     .catch((error) => {
+  //       reject(error);
+  //     });
+  //   });
+  // };
 
-  const getSingleProject = function(itemId) {
-    return $q((resolve, reject) => {
-      $http.get(`${FBCreds.databaseURL}/projects/${itemId}.json`)
-      .then((itemObj) => {
-        resolve(itemObj.data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-    });
-  };
+  // const getSingleProject = function(itemId) {
+  //   return $q((resolve, reject) => {
+  //     $http.get(`${FBCreds.databaseURL}/projects/${itemId}.json`)
+  //     .then((itemObj) => {
+  //       resolve(itemObj.data);
+  //     })
+  //     .catch((error) => {
+  //       reject(error);
+  //     });
+  //   });
+  // };
 
   const deleteProject = function(id) {
     return $q((resolve, reject) => {
@@ -72,6 +72,6 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     });
   };
 
-  return { getAllProjects, addProject, editProject, getSingleProject, deleteProject };
+  return { getAllProjects, addProject, deleteProject };
 
 });
