@@ -1,6 +1,5 @@
 <h3>Craft Projects</h3>
 
-
 <!-- Modal Trigger -->
 <div class="col">
   <a class="btn waves-effect light-blue" data-target="createProjectModal" modal>Create Project</a>
@@ -9,47 +8,64 @@
 <!-- Modal Structure -->
 <div id="createProjectModal" class="modal">
   <div class="modal-content">
-    <!-- <div class="row"> -->
-      <!-- <div class="col s12 m8"> -->
-        <div class="card project-form">
-          <h3>{{project.title}}</h3>
-          <form ng-submit="submitProject(project)">
-            <div>
-              <div input-field>
-                <label for="project-title">Create Project Title</label>
-                <input placeholder="Create a Project Title" id="project-title" type="text" class="validate" ng-model="project.title">
-              </div>
-              <div class="input-field">
-                <label for="imageUrl">Image URL</label>
-                <input id="imageUrl" type="text" class="validate" ng-model="project.img">
-              </div>
-              <div class="input-field">
-                <label for="description">Description</label>
-                <input id="description" type="text" class="validate" ng-model="project.description">
-              </div>
-              <div class="input-field">
-                <label for="URL">URL</label>
-                <input id="URL" type="text" class="validate" ng-model="project.url">
-              </div>
-              <div input-field>
-                <label for="supply-title">Create Supply Title</label>
-                <input placeholder="Create a Supply List" id="supply-title" type="text" class="validate" ng-model="project.supplylist">
-              </div>
-              <div input-field>
-                <label for="project-photos">Add Photos</label>
-                <input placeholder="Add project photos" id="project-photos" type="text" class="validate" ng-model="project.photos">
-              </div>
-              <br><br>
-              <button type="submit" class="waves-effect light-blue btn" class="btn btn-default">
-                Add Project
-              </button>
-              <button type="button" class="waves-effect light-blue btn" class="btn btn-default" ng-click="clearForm()">Cancel</button>
-            </div>
-          </form>
+    <div class="card project-form">
+      <h3>{{project.title}}</h3>
+      <form ng-submit="submitProject(project)">
+        <div>
+          <div input-field>
+            <label for="project-title">Create Project Title</label>
+            <input placeholder="Create a Project Title" id="project-title" type="text" class="validate" ng-model="project.title">
+          </div>
+          <div class="input-field">
+            <label for="imageUrl">Image URL</label>
+            <input id="imageUrl" type="text" class="validate" ng-model="project.img">
+          </div>
+          <div class="input-field">
+            <label for="description">Description</label>
+            <input id="description" type="text" class="validate" ng-model="project.description">
+          </div>
+          <div class="input-field">
+            <label for="URL">URL</label>
+            <input id="URL" type="text" class="validate" ng-model="project.url">
+          </div>
+          <div input-field>
+            <label for="supply-title">Create Supply Title</label>
+            <input placeholder="Create a Supply List" id="supply-title" type="text" class="validate" ng-model="project.supplylist">
+          </div>
+          <div input-field>
+            <label for="project-photos">Add Photos</label>
+            <input placeholder="Add project photos" id="project-photos" type="text" class="validate" ng-model="project.photos">
+          </div>
+          <br><br>
+          <button type="submit" class="waves-effect light-blue btn modal-close">Add Project</button>
+          <button type="button" class="waves-effect light-blue btn modal-close" ng-click="clearForm()">Cancel</button>
         </div>
-      <!-- </div> -->
-    <!-- </div> -->
+      </form>
+    </div>
   </div>
 </div>
 
 <!-- get project details view showing with cards repeated -->
+<div class="row" ng-repeat="item in projects | filter:searchText">
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <a href="#"><img ng-src="">{{project.img}}</a>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{project.title}}</span>
+        <p>{{project.description}}</p>
+        <p><a href="#">{{project.url}}</a></p>
+        <h4>{{project.supplylist}}</h4>
+        <div class="style-icon" id="editProject"><a ui-sref="#!/task/{{project.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
+        <div class="style-icon" id="deleteProject"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-info"><a ng-href="#!/task/{{task.id}}/edit">Edit</a></button>
+</div>
+
+<!-- how to do  -->
+#!/task/{{task.id}

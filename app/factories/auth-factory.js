@@ -15,11 +15,11 @@ bobbin.factory('authFactory', function() {
             userEmail: user.email,
             userPhoto: user.photoURL
           };
-
+          // console.log('userObj',userObj);
           addNewUserRegisteredObj.push(userObj);
-          currentUser = user.uid;
-          console.log('User: ', user.email, user.uid);
-          resolve(true);
+          currentUser = user;
+          // console.log('User: ', user.email, user.uid);
+          resolve(user);
         } else {
           resolve(false);
         }
@@ -27,13 +27,14 @@ bobbin.factory('authFactory', function() {
     });
   };
 
-  const getCurrentUser = function() {
-    return currentUser;
-  };
+const getCurrentUser = function() {
+  return isAuthenticated();
+};
 
-  const getNewUserRegisteredInfo = function() {
-    return addNewUserRegisteredObj;
-  };
+const getNewUserRegisteredInfo = function() {
+  return addNewUserRegisteredObj;
+};
+// addNewUserRegisteredObj
 
   const logIn = function(userObj) {
     return firebase.auth().signInWithEmailAndPassword(userObj.email, userObj.password);

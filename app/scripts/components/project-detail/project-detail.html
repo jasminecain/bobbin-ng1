@@ -1,28 +1,20 @@
 <!-- project cards -->
 <div class="row">
-    <div class="col s12 m4">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <a href="#"><img ng-src="">{{project.img}}</a>
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{project.title}}</span>
-          <p>{{project.description}}</p>
-          <p><a href="#">{{project.url}}</a></p>
-          <h4>{{project.supplylist}}</h4>
-          <div class="style-icon" id="editProject"><a ui-sref="#!/task/{{project.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
-          <div class="style-icon" id="deleteProject"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
-        </div>
+  <div class="col s12 m8">
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <a href="#"><img ng-src="">{{project.img}}</a>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{project.title}}</span>
+        <p>{{project.description}}</p>
+        <p><a href="#">{{project.url}}</a></p>
+        <h4>{{project.supplylist}}</h4>
+        <div class="style-icon" id="editProject"><a ui-sref="#!/task/{{project.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
+        <div class="style-icon" id="deleteProject"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
       </div>
     </div>
   </div>
-
-  <!-- <i class="material-icons right">more_vert</i> -->
-
-
-
-  <button class="btn btn-info"><a ng-href="#!/task/{{task.id}}/edit">Edit</a></button>
 </div>
 
-<!-- how to do  -->
-#!/task/{{task.id}}
+  <!-- <i class="material-icons right">more_vert</i> -->
