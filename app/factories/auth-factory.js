@@ -1,6 +1,6 @@
 'use strict';
 
-bobbin.factory('authFactory', function() {
+bobbin.factory('authFactory', function($http, FBCreds) {
 
   let currentUser = null;
   let addNewUserRegisteredObj = [];
@@ -17,8 +17,8 @@ bobbin.factory('authFactory', function() {
           };
           // console.log('userObj',userObj);
           addNewUserRegisteredObj.push(userObj);
-          currentUser = user;
-          // console.log('User: ', user.email, user.uid);
+          currentUser = user.uid;
+          console.log('User: ', user.email, user.uid);
           resolve(user);
         } else {
           resolve(false);
@@ -28,8 +28,12 @@ bobbin.factory('authFactory', function() {
   };
 
 const getCurrentUser = function() {
-  return isAuthenticated();
+  return currentUser;
 };
+
+const setCurrentUser = function(id) {
+  currentUser = id;
+}
 
 const getNewUserRegisteredInfo = function() {
   return addNewUserRegisteredObj;
@@ -47,11 +51,32 @@ const getNewUserRegisteredInfo = function() {
 
   const register = function(userObj) {
     return firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
-    .catch(function(error) {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      console.log('register error', errorCode, errorMessage);
-    });
+    .then(function addUserInfo(userObj) {
+      let addUserInfotoFB = {
+        uid: userObj.uid,
+        userEmail: userObj.email,
+        userName: userObj.displayName,
+        userPhoto: userObj.photoURL
+      };
+      debugger;
+      aaddUserInfo.push(addUserInfotoFB);
+      console.log('userObjFB.uid', addUserInfotoFB);
+      let newObj = JSON.stringify(addUserInfotoFB);
+      return $http.post(`${FBCreds.databaseURL}/users.json`, newObj)
+        .then((data) => {
+          console.log("data", data);
+          return data;
+        }, (error) => {
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          console.log("error", errorCode, errorMessage);
+        });
+      })
+      .catch(function(error) {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log('register error', errorCode, errorMessage);
+      });
   };
 
   let provider = new firebase.auth.GoogleAuthProvider();
@@ -60,5 +85,5 @@ const getNewUserRegisteredInfo = function() {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  return { isAuthenticated, getCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
+  return { isAuthenticated, getCurrentUser, setCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
 });
