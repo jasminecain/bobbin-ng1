@@ -48,17 +48,18 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
   //   });
   // };
 
-  // const getSingleProject = function(itemId) {
-  //   return $q((resolve, reject) => {
-  //     $http.get(`${FBCreds.databaseURL}/projects/${itemId}.json`)
-  //     .then((itemObj) => {
-  //       resolve(itemObj.data);
-  //     })
-  //     .catch((error) => {
-  //       reject(error);
-  //     });
-  //   });
-  // };
+  const getSingleProject = function(projectId) {
+    return $q((resolve, reject) => {
+      $http.get(`${FBCreds.databaseURL}/projects/${projectId}.json`)
+      .then((project) => {
+        resolve(project.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
+    });
+  };
 
   const deleteProject = function(id) {
     return $q((resolve, reject) => {
@@ -72,6 +73,6 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     });
   };
 
-  return { getAllProjects, addProject, deleteProject };
+  return { getAllProjects, addProject, getSingleProject, deleteProject };
 
 });

@@ -1,69 +1,79 @@
-<h3>Craft Projects</h3>
+<div class="container col s12 m4 l8">
+  <search-bar-component></search-bar-component>
+  <h3>Craft Projects</h3>
 
-<!-- Modal Trigger -->
-<div class="col">
-  <a class="btn waves-effect light-blue" data-target="createProjectModal" modal>Create Project</a>
-</div>
+  <!-- Modal Trigger -->
+  <div class="col" ng-if="projects.length">
+    <a class="btn waves-effect light-blue" data-target="createProjectModal" modal>Create Project</a>
+  </div>
 
-<!-- Modal Structure -->
-<div id="createProjectModal" class="modal">
-  <div class="modal-content">
-    <div class="card project-form">
-      <h3>New Project</h3>
-      <form ng-submit="submitProject(project)">
-        <div  class="input-field">
-          <label for="project-title">Project Title</label>
-          <input id="project-title" type="text" class="validate" ng-model="project.title">
-        </div>
-        <div class="input-field">
-          <label for="imageUrl">Image URL</label>
-          <input id="imageUrl" type="text" class="validate" ng-model="project.img">
-        </div>
-        <div class="input-field">
-          <label for="description">Description</label>
-          <input id="description" type="text" class="validate" ng-model="project.description">
-        </div>
-        <div class="input-field">
-          <label for="URL">Tutorial URL</label>
-          <input id="URL" type="text" class="validate" ng-model="project.url">
-        </div>
-        <div class="input-field">
-          <label for="supply-title">Supply Title</label>
-          <input id="supply-title" type="text" class="validate" ng-model="project.supplylist">
-        </div>
-        <div class="input-field">
-          <label for="project-photos">Add Photos</label>
-          <input id="project-photos" type="text" class="validate" ng-model="project.photos">
-        </div>
-        <br><br>
-        <button type="submit" class="waves-effect light-blue btn modal-close">Add Project</button>
-        <button type="button" class="waves-effect light-blue btn modal-close" ng-click="clearForm()">Cancel</button>
-      </form>
+
+<div class="row" ng-if="!projects.length">
+  <div class="container col s12 m4 l8">
+    <div class="card-panel blue-grey lighten-5 center-align">
+        <h5>Create your first project to get started!</h5>
+        <p><a class="btn waves-effect light-blue" data-target="createProjectModal" modal>Create Project</a></p>
     </div>
   </div>
 </div>
 
-<button type="button" class="waves-effect light-blue btn modal-close" ui-sref="projects.detail({ projectId: '1' })">TEST Project Detail</button>
+  <!-- Modal Structure -->
+  <div id="createProjectModal" class="modal">
+    <div class="modal-content">
+      <div class="card project-form">
+        <h3>New Project</h3>
+        <form ng-submit="submitProject(project)">
+          <div  class="input-field">
+            <label for="project-title">Project Title</label>
+            <input id="project-title" type="text" class="validate" ng-model="project.title">
+          </div>
+          <div class="input-field">
+            <label for="imageUrl">Image URL</label>
+            <input id="imageUrl" type="text" class="validate" ng-model="project.img">
+          </div>
+          <div class="input-field">
+            <label for="description">Description</label>
+            <input id="description" type="text" class="validate" ng-model="project.description">
+          </div>
+          <div class="input-field">
+            <label for="URL">Tutorial URL</label>
+            <input id="URL" type="text" class="validate" ng-model="project.url">
+          </div>
+          <div class="input-field">
+            <label for="supply-title">Supply Title</label>
+            <input id="supply-title" type="text" class="validate" ng-model="project.supplylist">
+          </div>
+          <div class="input-field">
+            <label for="project-photos">Add Photos</label>
+            <input id="project-photos" type="text" class="validate" ng-model="project.photos">
+          </div>
+          <br><br>
+          <button type="submit" class="waves-effect light-blue btn modal-close">Add Project</button>
+          <button type="button" class="waves-effect light-blue btn modal-close" ng-click="clearForm()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-<!-- get project details view showing with cards repeated -->
-<div class="row" ng-init="init()">
-  <div class="col s12 m3" ng-repeat="project in projects">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <a href="#"><img ng-src="{{ project.img }}"></a>
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">{{ project.title }}</span>
-        <p>{{ project.description }}</p>
-        <p><a href="#">{{ project.url }}</a></p>
-      </div>
-      <div class="card-action">
-          <!-- function: passing in project id as params -->
-          <a ui-sref="projects.detail({ projectId: project.id })"><i class="material-icons">mode_edit</i></a>
-          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+  <div class="row" ng-init="init()">
+    <div class="col s12 m4" ng-repeat="project in projects">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <a ui-sref="projects.detail({ projectId: project.id })"><img ng-src="{{ project.img }}"></a>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4" ui-sref="projects.detail({ projectId: project.id })">{{ project.title }}</span>
+          <p>{{ project.description }}</p>
+          <p><a href="#">{{ project.url }}</a></p>
+        </div>
+        <div class="card-action">
+            <!-- function: passing in project id as params -->
+            <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i>
+            <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+</div>

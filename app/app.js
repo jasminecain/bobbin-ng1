@@ -44,7 +44,7 @@ const bobbin = angular.module('BobbinApp', [
   })
 
   .state('projects.detail', {
-    url: '/projects/:projectsId',
+    url: '/projects/:projectId',
     views: {
       'projectsDetail': {
         component: 'projectDetailComponent'
