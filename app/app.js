@@ -124,6 +124,7 @@ const bobbin = angular.module('BobbinApp', [
           } else {
             // If user is not authed, send them to login state
             $state.go('root');
+            return;
           }
         });
     }

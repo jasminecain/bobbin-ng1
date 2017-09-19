@@ -9,74 +9,61 @@
 <div id="createProjectModal" class="modal">
   <div class="modal-content">
     <div class="card project-form">
-      <h3>{{project.title}}</h3>
+      <h3>New Project</h3>
       <form ng-submit="submitProject(project)">
-        <div>
-          <div input-field>
-            <label for="project-title">Create Project Title</label>
-            <input placeholder="Create a Project Title" id="project-title" type="text" class="validate" ng-model="project.title">
-          </div>
-          <div class="input-field">
-            <label for="imageUrl">Image URL</label>
-            <input id="imageUrl" type="text" class="validate" ng-model="project.img">
-          </div>
-          <div class="input-field">
-            <label for="description">Description</label>
-            <input id="description" type="text" class="validate" ng-model="project.description">
-          </div>
-          <div class="input-field">
-            <label for="URL">URL</label>
-            <input id="URL" type="text" class="validate" ng-model="project.url">
-          </div>
-          <div input-field>
-            <label for="supply-title">Create Supply Title</label>
-            <input placeholder="Create a Supply List" id="supply-title" type="text" class="validate" ng-model="project.supplylist">
-          </div>
-          <div input-field>
-            <label for="project-photos">Add Photos</label>
-            <input placeholder="Add project photos" id="project-photos" type="text" class="validate" ng-model="project.photos">
-          </div>
-          <br><br>
-          <button type="submit" class="waves-effect light-blue btn modal-close">Add Project</button>
-          <button type="button" class="waves-effect light-blue btn modal-close" ng-click="clearForm()">Cancel</button>
+        <div  class="input-field">
+          <label for="project-title">Project Title</label>
+          <input placeholder="Project Title" id="project-title" type="text" class="validate" ng-model="project.title">
         </div>
+        <div class="input-field">
+          <label for="imageUrl">Image URL</label>
+          <input id="imageUrl" type="text" class="validate" ng-model="project.img">
+        </div>
+        <div class="input-field">
+          <label for="description">Description</label>
+          <input id="description" type="text" class="validate" ng-model="project.description">
+        </div>
+        <div class="input-field">
+          <label for="URL">Tutorial URL</label>
+          <input id="URL" type="text" class="validate" ng-model="project.url">
+        </div>
+        <div class="input-field">
+          <label for="supply-title">Supply Title</label>
+          <input placeholder="Supply List Title" id="supply-title" type="text" class="validate" ng-model="project.supplylist">
+        </div>
+        <div class="input-field">
+          <label for="project-photos">Add Photos</label>
+          <input placeholder="Add project photos" id="project-photos" type="text" class="validate" ng-model="project.photos">
+        </div>
+        <br><br>
+        <button type="submit" class="waves-effect light-blue btn modal-close">Add Project</button>
+        <button type="button" class="waves-effect light-blue btn modal-close" ng-click="clearForm()">Cancel</button>
       </form>
     </div>
   </div>
 </div>
 
-<button type="button" class="waves-effect light-blue btn modal-close" ui-sref="/projects.detail">TEST Project Detail</button>
+<button type="button" class="waves-effect light-blue btn modal-close" ui-sref="projects.detail({ projectId: '1' })">TEST Project Detail</button>
 
 <!-- get project details view showing with cards repeated -->
-<div class="row" ng-repeat="item in projects">
-  <div class="col s12 m4">
+<div class="row" ng-init="init()">
+  <div class="col s12 m4" ng-repeat="project in projects">
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
-        <a href="#"><img ng-src="">{{item.img}}</a>
+        <a href="#"><img ng-src="{{ project.img }}"></a>
       </div>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">{{item.title}}</span>
-        <p>{{item.description}}</p>
-        <p><a href="#">{{item.url}}</a></p>
-        <h4>{{item.supplylist}}</h4>
-        <div class="style-icon" id="editProject"><a ui-sref="#!/projects.detail/{{item.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
-        <div class="style-icon" id="deleteProject" ng-click="deleteProject()"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
+        <span class="card-title activator grey-text text-darken-4">{{ project.title }}</span>
+        <p>{{ project.description }}</p>
+        <p><a href="#">{{ project.url }}</a></p>
+        <h4>{{ project.supplylist }}</h4>
+        <div class="style-icon" id="editProject">
+          <!-- <a ui-sref="projects.detail({ projectId: project.id }}"><i class="material-icons">mode_edit</i>Edit Project</a> -->
+        </div>
+        <div class="style-icon" ng-click="deleteProject(project)"><i class="material-icons">highlight_off</i>Delete</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- project.whatever displays upon submit -->
-  <!-- "{"title":"ptitle","img":"pimage","description":"pdesc","url":"purl","supplylist":"psupply","photos":"photos"}
-  data
-  :
-  "{"title":"whatttt","img":"whatttt","description":"whatttt","url":"whatttt","supplylist":"whatttt","photos":"whatttt"} -->
-
-<!-- ng-repeat="item in projects | filter:searchText" -->
-<!-- <button class="btn btn-info"><a ng-href="#!/task/{{task.id}}/edit">Edit</a></button>
-</div> -->
-
 <!-- how to do #!/task/{{task.id} -->
-
-<!-- CLEAR FORM BUTTON AFTER ENTER -->
-<!-- cancel button is not clearing the first line/ -->

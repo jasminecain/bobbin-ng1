@@ -2,11 +2,11 @@
 
 bobbin.factory('projectFactory', function($q, $http, FBCreds) {
 
-  const getAllProjects = function(user) {
+  const getAllProjects = function(userId) {
     let projects = [];
     // console.log(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`);
     return $q ((resolve, reject) => {
-      $http.get(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${user}"`)
+      $http.get(`${FBCreds.databaseURL}/projects.json?orderBy="uid"&equalTo="${userId}"`)
       .then((itemObject) => {
         let itemCollection = itemObject.data;
         // console.log('itemCollection?', itemCollection);
