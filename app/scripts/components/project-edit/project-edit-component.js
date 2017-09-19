@@ -1,9 +1,9 @@
 'use strict';
 
-bobbin.component('projectDetailComponent', {
+bobbin.component('editProjectComponent', {
 
-  templateUrl: 'app/scripts/components/project-detail/project-detail.html',
-  controller: function($scope, $state, authFactory, projectFactory) {
+  templateUrl: 'app/scripts/components/project-edit/project-edit.html',
+  controller: function(authFactory, projectFactory, $state, $scope) {
 
     $scope.projectId = $state.params.projectId;
 
@@ -19,8 +19,12 @@ bobbin.component('projectDetailComponent', {
         });
     };
 
-    $scope.toEditProjectView = function() {
-      $state.go('editProject.view', { projectId: $scope.projectId });
+    $scope.updateProject = function(project) {
+      projectFactory.editProject(project)
+      .then((data) => {
+        console.log('updateProject: ', data);
+        $scope.project = data;
+      });
     };
 
   }
