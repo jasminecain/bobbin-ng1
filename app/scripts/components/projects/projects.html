@@ -13,7 +13,7 @@
       <form ng-submit="submitProject(project)">
         <div  class="input-field">
           <label for="project-title">Project Title</label>
-          <input placeholder="Project Title" id="project-title" type="text" class="validate" ng-model="project.title">
+          <input id="project-title" type="text" class="validate" ng-model="project.title">
         </div>
         <div class="input-field">
           <label for="imageUrl">Image URL</label>
@@ -29,11 +29,11 @@
         </div>
         <div class="input-field">
           <label for="supply-title">Supply Title</label>
-          <input placeholder="Supply List Title" id="supply-title" type="text" class="validate" ng-model="project.supplylist">
+          <input id="supply-title" type="text" class="validate" ng-model="project.supplylist">
         </div>
         <div class="input-field">
           <label for="project-photos">Add Photos</label>
-          <input placeholder="Add project photos" id="project-photos" type="text" class="validate" ng-model="project.photos">
+          <input id="project-photos" type="text" class="validate" ng-model="project.photos">
         </div>
         <br><br>
         <button type="submit" class="waves-effect light-blue btn modal-close">Add Project</button>
@@ -47,7 +47,7 @@
 
 <!-- get project details view showing with cards repeated -->
 <div class="row" ng-init="init()">
-  <div class="col s12 m4" ng-repeat="project in projects">
+  <div class="col s12 m3" ng-repeat="project in projects">
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
         <a href="#"><img ng-src="{{ project.img }}"></a>
@@ -56,14 +56,14 @@
         <span class="card-title activator grey-text text-darken-4">{{ project.title }}</span>
         <p>{{ project.description }}</p>
         <p><a href="#">{{ project.url }}</a></p>
-        <h4>{{ project.supplylist }}</h4>
-        <div class="style-icon" id="editProject">
-          <!-- <a ui-sref="projects.detail({ projectId: project.id }}"><i class="material-icons">mode_edit</i>Edit Project</a> -->
+      </div>
+      <div class="card-action">
+          <!-- function: passing in project id as params -->
+          <a ui-sref="projects.detail({ projectId: project.id })"><i class="material-icons">mode_edit</i></a>
+          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
         </div>
-        <div class="style-icon" ng-click="deleteProject(project)"><i class="material-icons">highlight_off</i>Delete</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- how to do #!/task/{{task.id} -->
