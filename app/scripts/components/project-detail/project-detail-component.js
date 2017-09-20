@@ -64,14 +64,14 @@ bobbin.component('projectDetailComponent', {
 
       //Add array of supplies to the project object
       //before patch request
-      project.supplies = supplyItems
+      project.supplies = supplyItems;
 
       projectFactory.editProject($scope.projectId, project)
       .then((data) => {
         console.log('updateProject: ', data);
         $window.Materialize.toast('Supply list added!', 2000);
       });
-    }
+    };
 
   }
 });

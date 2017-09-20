@@ -3,13 +3,13 @@
   <h3>Craft Projects</h3>
 
   <!-- CAROUSEL -->
-  <div carousel carousel-1 duration="500" no-wrap="true">
+  <!-- <div carousel carousel-1 duration="200" no-wrap="true">
     <a class="carousel-item row" href="#one!"><img src="app/assets/images/hero.jpeg"></a>
     <a class="carousel-item row" href="#two!"><img src="app/assets/images/hero.jpeg"></a>
     <a class="carousel-item row" href="#three!"><img src="app/assets/images/hero.jpeg"></a>
     <a class="carousel-item row" href="#four!"><img src="app/assets/images/hero.jpeg"></a>
     <a class="carousel-item row" href="#five!"><img src="app/assets/images/hero.jpeg"></a>
-  </div>
+  </div> -->
 
   <!-- Modal Trigger -->
   <div class="col" ng-if="projects.length">
@@ -79,7 +79,7 @@
           <!-- function: passing in project id as params -->
           <!-- <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i> -->
           <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
-          <a ui-sref="{{mailLink}}" target="_blank"><i class="material-icons icon-black">email</i></a>
+          <i class="material-icons" ng-click="emailShare(project)">email</i>
         </div>
         </div>
       </div>

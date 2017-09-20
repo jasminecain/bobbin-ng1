@@ -30,8 +30,9 @@ bobbin.factory('authFactory', function($http, FBCreds, $window) {
   };
 
   const getCurrentUser = function() {
+    //stores user in localStorage, to aid in data loss upon refresh
     return JSON.parse($window.localStorage.getItem('currentUser'));
-    // return currentUser;
+    // console.log('currentUser');
   };
 
   const setCurrentUser = function(user) {

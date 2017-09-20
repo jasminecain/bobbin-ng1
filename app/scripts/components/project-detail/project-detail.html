@@ -11,7 +11,6 @@
           <p><a href="#">{{ project.url }}</a></p>
         </div>
         <div class="card-action">
-          <!-- function: passing in project id as params -->
           <i class="material-icons" ng-click="toEditProjectView()">mode_edit</i>
           <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
           <i class="material-icons" ng-click="emailShare(project)">email</i>
@@ -31,6 +30,7 @@
 
             <form ng-if="project.supplies.length">
               <p ng-repeat="item in project.supplies">
+                <!-- checkboxes are marked completed done is true -->
                 <input type="checkbox" id="filled-in-box" class="filled-in" ng-model="item.done" />
                 <label for="filled-in-box">{{item.name}}</label>
               </p>
@@ -41,7 +41,7 @@
           <!-- ACTIONS -->
           <i class="material-icons" ui-sref="editProject.view({ projectId: project.id })">mode_edit</i>
           <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
-          <a ui-sref="{{mailLink}}" target="_blank"><i class="material-icons icon-black" ng-click="emailShare()">email</i></a>
+          <i class="material-icons" ng-click="emailShare(project)">email</i>
           <i class="material-icons icon-black print-icon" ng-click="printSupplyList()">print</i></a>
         </div>
       </div>
@@ -53,8 +53,10 @@
     <div class="card project-form">
       <h4>Add Supply Items</h4>
       <form>
+        <!-- dynamically repeating supplyfield by field.id -->
         <div class="input-field" ng-repeat="field in supplyFields">
           <label for="item-name">Item Name</label>
+          <!-- creates a new field on enter event -->
           <input id="{{field.id}}" type="text" class="validate" ng-model="field.itemName" ng-keyup="addNextItem($event)">
         </div>
         <br />

@@ -3,7 +3,7 @@
 bobbin.component('projectsComponent', {
 
   templateUrl: 'app/scripts/components/projects/projects.html',
-  controller: function(authFactory, projectFactory, $state, $scope) {
+  controller: function(authFactory, projectFactory, $state, $scope, $window) {
 
     let user = authFactory.getCurrentUser();
 
@@ -19,7 +19,7 @@ bobbin.component('projectsComponent', {
         });
     };
 
-    $('.carousel.carousel-slider').carousel({ fullWidth: true, duration: 200 });
+    // $('.carousel.carousel-slider').carousel({ fullWidth: true, duration: 200 });
 
     $scope.submitProject = function(project) {
       project.uid = user.uid;
@@ -41,6 +41,10 @@ bobbin.component('projectsComponent', {
 
     $scope.clearForm = function() {
       $scope.project = {};
+    };
+
+    $scope.emailShare = function(project) {
+      $window.open('mailto:' + '' + '?subject=' + 'Check out my latest project' + '&body=' + project.title + ' - ' + project.url, '_self');
     };
   }
 });
