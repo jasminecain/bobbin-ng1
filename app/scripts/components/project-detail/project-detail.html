@@ -25,7 +25,24 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">Supply List</span>
           <p>
-            <!-- CHECKLIST -->
+            <div ng-if="!project.supplies.length">
+              <button class="btn waves-effect light-blue" data-target="addSuppliesModal" modal>Add Items</button>
+            </div>
+
+            <form ng-if="project.supplies.length">
+              <p>
+                <input type="checkbox" id="filled-in-box" class="filled-in" />
+                <label for="filled-in-box">Filled in</label>
+              </p>
+              <p>
+                <input type="checkbox" id="filled-in-box" class="filled-in" />
+                <label for="filled-in-box">Filled in</label>
+              </p>
+              <p>
+                <input type="checkbox" id="filled-in-box" class="filled-in" />
+                <label for="filled-in-box">Filled in</label>
+              </p>
+            </form>
           </p>
         </div>
         <div class="card-action">
@@ -37,3 +54,21 @@
         </div>
       </div>
     </div>
+
+<!-- Add Supply Items Modal -->
+<div id="addSuppliesModal" class="modal">
+  <div class="modal-content">
+    <div class="card project-form">
+      <h4>Add Supply Items</h4>
+      <form>
+        <div class="input-field" ng-repeat="field in supplyFields">
+          <label for="item-name">Item Name</label>
+          <input id="{{field.id}}" type="text" class="validate" ng-model="field.itemName" ng-keyup="addNextItem($event)">
+        </div>
+        <br />
+        <button type="button" class="waves-effect light-blue btn modal-close" ng-click="saveSupplyList(project)">Done</button>
+        <button type="button" class="waves-effect blue-grey lighten-5 black-text btn modal-close" ng-click="clearForm()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

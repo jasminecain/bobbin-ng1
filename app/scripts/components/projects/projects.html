@@ -18,7 +18,7 @@
 
 
 <div class="row" ng-if="!projects.length">
-  <div class="container col s12 m4 l8">
+  <div class="container col s12">
     <div class="card-panel blue-grey lighten-5 center-align">
         <h5>Create your first project to get started!</h5>
         <p><a class="btn waves-effect light-blue" data-target="createProjectModal" modal>Create Project</a></p>
@@ -77,7 +77,7 @@
         </div>
         <div class="card-action">
           <!-- function: passing in project id as params -->
-          <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i>
+          <!-- <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i> -->
           <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
           <a ui-sref="{{mailLink}}" target="_blank"><i class="material-icons icon-black">email</i></a>
         </div>
