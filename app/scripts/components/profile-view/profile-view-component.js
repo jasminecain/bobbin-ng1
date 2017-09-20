@@ -5,45 +5,36 @@ bobbin.component('profileViewComponent', {
   templateUrl: 'app/scripts/components/profile-view/profile-view.html',
   controller: function(authFactory, $scope, $state) {
 
-    // let user = authFactory.getCurrentUser();
+    let user = authFactory.getCurrentUser();
+    console.log(user);
+    //user is defined up until here
+    debugger;
 
     // On profile view initialize get user data and store in scope
-    // $scope.init = function(userObj) {
-    //   console.log('init userObj', userObj);
+    $scope.init = function() {
+      authFactory.isAuthenticated(user);
 
-    // $scope.getUserData(userObj)
-    //   .then((data) => {
-    //     $scope.user = data;
-    //     $scope.$apply();
-    //     // console.log($scope.user);
-    //   });
-    //     // $scope.editProfile = function() {
-    //     //   $scope.apply($scope.user);
-    //     // };
-    // };
+      $scope.getUserData(user)
+      .then((data) => {
+            $scope.user = data;
+            $scope.$apply();
+      });
+      console.log('init user', user);
+    };
 
-    $scope.logOut = () => {
+    $scope.logOut = (user) => {
       authFactory.logOut($scope.account)
         .then(() => {
           $state.go('root');
         });
     };
+    console.log(user);
 
-    // $scope.NewUserRegisteredInfo = [];
-    // let getUserRegisteredInfo = function() {
-    //   let pulledUserInfo = authFactory.getNewUserRegisteredInfo();
-    //   $scope.NewUserRegisteredInfo = pulledInfo.splice(0,1);
-    //   console.log('pulledUserInfo', pulledUserInfo);
-    //   console.log('NewUserRegisteredInfo', $scope.NewUserRegisteredInfo);
-    // } ();
-
-
-
-    // $scope.getUserData = (userObj) => {
-    //   return authFactory.getCurrentUser(currentUser)
-    //     .then((data) => {
-    //       return data;
-    //     });
-    // };
+    $scope.getUserData = (user) => {
+      return authFactory.isAuthenticated(user)
+        .then((data) => {
+          return data;
+        });
+    };
   }
 });
