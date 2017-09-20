@@ -3,12 +3,12 @@
 bobbin.component('editProjectComponent', {
 
   templateUrl: 'app/scripts/components/project-edit/project-edit.html',
-  controller: function(authFactory, projectFactory, $state, $scope) {
+  controller: function(authFactory, projectFactory, $state, $scope, $window) {
 
-    $scope.projectId = $state.params.projectId;
 
     $scope.init = function() {
-      $scope.getProject($scope.projectId);
+      //grabbing params of projectId on the current state
+      $scope.getProject($state.params.projectId);
     };
 
     $scope.getProject = function(projectId) {
@@ -20,12 +20,16 @@ bobbin.component('editProjectComponent', {
     };
 
     $scope.updateProject = function(project) {
-      projectFactory.editProject(project)
+      projectFactory.editProject($state.params.projectId, project)
       .then((data) => {
         console.log('updateProject: ', data);
-        $scope.project = data;
+        $window.Materialize.toast('Project Updated!', 2000);
       });
     };
 
+    $scope.backBtn = function() {
+      //equivalent to back button
+      $window.history.back();
+    };
   }
 });

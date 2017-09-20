@@ -3,7 +3,7 @@
 bobbin.component('projectDetailComponent', {
 
   templateUrl: 'app/scripts/components/project-detail/project-detail.html',
-  controller: function($scope, $state, authFactory, projectFactory) {
+  controller: function($scope, $state, authFactory, projectFactory, $window) {
 
     $scope.projectId = $state.params.projectId;
 
@@ -23,5 +23,13 @@ bobbin.component('projectDetailComponent', {
       $state.go('editProject.view', { projectId: $scope.projectId });
     };
 
+    $scope.printSupplyList = function() {
+      $window.print();
+    };
+
+    // opening email share on click
+    $scope.emailShare = function(project) {
+      $window.open('mailto:' + '' + '?subject=' + 'Check out my latest project' + '&body=' + project.title + ' - ' + project.url, '_self');
+    };
   }
 });

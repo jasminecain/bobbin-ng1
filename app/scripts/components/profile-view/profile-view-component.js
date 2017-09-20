@@ -5,20 +5,22 @@ bobbin.component('profileViewComponent', {
   templateUrl: 'app/scripts/components/profile-view/profile-view.html',
   controller: function(authFactory, $scope, $state) {
 
-    // On profile view initialize get user data and store in scope
-    $scope.init = function(userObj) {
-      console.log('init userObj', userObj);
+    // let user = authFactory.getCurrentUser();
 
-    $scope.getUserData(userObj)
-      .then((data) => {
-        $scope.user = data;
-        $scope.$apply();
-        // console.log($scope.user);
-      });
-        // $scope.editProfile = function() {
-        //   $scope.apply($scope.user);
-        // };
-    };
+    // On profile view initialize get user data and store in scope
+    // $scope.init = function(userObj) {
+    //   console.log('init userObj', userObj);
+
+    // $scope.getUserData(userObj)
+    //   .then((data) => {
+    //     $scope.user = data;
+    //     $scope.$apply();
+    //     // console.log($scope.user);
+    //   });
+    //     // $scope.editProfile = function() {
+    //     //   $scope.apply($scope.user);
+    //     // };
+    // };
 
     $scope.logOut = () => {
       authFactory.logOut($scope.account)
@@ -37,11 +39,11 @@ bobbin.component('profileViewComponent', {
 
 
 
-    $scope.getUserData = (userObj) => {
-      return authFactory.getCurrentUser()
-        .then((data) => {
-          return data;
-        });
-    };
+    // $scope.getUserData = (userObj) => {
+    //   return authFactory.getCurrentUser(currentUser)
+    //     .then((data) => {
+    //       return data;
+    //     });
+    // };
   }
 });

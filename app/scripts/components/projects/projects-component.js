@@ -19,6 +19,8 @@ bobbin.component('projectsComponent', {
         });
     };
 
+    $('.carousel.carousel-slider').carousel({ fullWidth: true, duration: 200 });
+
     $scope.submitProject = function(project) {
       project.uid = user.uid;
 
