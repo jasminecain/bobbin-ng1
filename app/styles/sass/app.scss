@@ -1,6 +1,27 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.main-nav {
+  margin-bottom: 50px;
+}
+
 .logo-img {
   height: 56px;
   line-height: 56px;
+}
+.p-padding {
+  margin-top: 40px;
+}
+
+.auth-form {
+  margin-bottom: 40px;
 }
 
 .modal {
@@ -8,8 +29,18 @@
 }
 
 .profile-photo {
-  width: 15% !important;
   border-radius: 50% !important;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 15% !important;
+}
+
+.material-icons {
+  padding-left: 10px;
+}
+
+i.icon-black {
+  color: black;
 }
 
 .project-form {

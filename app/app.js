@@ -44,10 +44,25 @@ const bobbin = angular.module('BobbinApp', [
   })
 
   .state('projects.detail', {
-    url: '/projects/:projectsId',
+    url: '/projects/:projectId',
     views: {
       'projectsDetail': {
         component: 'projectDetailComponent'
+      }
+    },
+    data: { requireAuth: true }
+  })
+
+  .state('editProject', {
+    abstract: true,
+    templateUrl: 'app/templates/pages/project-edit.html',
+  })
+
+  .state('editProject.view', {
+    url: '/projects/:projectId/edit',
+    views: {
+      'editProject': {
+        component: 'editProjectComponent'
       }
     },
     data: { requireAuth: true }
@@ -68,30 +83,15 @@ const bobbin = angular.module('BobbinApp', [
     data: { requireAuth: true }
   })
 
-  .state('edit.project', {
-    abstract: true,
-    templateUrl: 'app/templates/pages/edit-project-view.html',
-  })
-
-  .state('edit.project.view', {
-    url: '/edit.project',
-    views: {
-      'edit.project': {
-        component: 'editProjectComponent'
-      }
-    },
-    data: { requireAuth: true }
-  })
-
-  .state('photo.gallery', {
+  .state('photoGallery', {
     abstract: true,
     templateUrl: 'app/templates/pages/photo-gallery-view.html',
   })
 
-  .state('photo.gallery.view', {
-    url: '/photo.gallery',
+  .state('photoGallery.view', {
+    url: '/photo-gallery',
     views: {
-      'photo.gallery': {
+      'photoGallery': {
         component: 'photoGalleryComponent'
       }
     },
@@ -124,6 +124,7 @@ const bobbin = angular.module('BobbinApp', [
           } else {
             // If user is not authed, send them to login state
             $state.go('root');
+            return;
           }
         });
     }

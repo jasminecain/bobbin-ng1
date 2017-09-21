@@ -1,6 +1,6 @@
 'use strict';
 
-bobbin.factory('authFactory', function($http, FBCreds) {
+bobbin.factory('authFactory', function($http, FBCreds, $window) {
 
   let currentUser = null;
   let addNewUserRegisteredObj = [];
@@ -11,14 +11,15 @@ bobbin.factory('authFactory', function($http, FBCreds) {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           let userObj = {
+            uid: user.uid,
             userName: user.displayName,
             userEmail: user.email,
             userPhoto: user.photoURL
           };
+
           console.log('userObj',userObj);
-          addNewUserRegisteredObj.push(userObj);
-          // debugger;
-          currentUser = user.uid;
+          $window.localStorage.setItem('currentUser', JSON.stringify(userObj));
+          currentUser = user;
           console.log('isAuthenticated User ', user.email, user.uid);
           resolve(user);
         } else {
@@ -28,18 +29,15 @@ bobbin.factory('authFactory', function($http, FBCreds) {
     });
   };
 
-const getCurrentUser = function() {
-  return currentUser;
-};
+  const getCurrentUser = function() {
+    //stores user in localStorage, to aid in data loss upon refresh
+    return JSON.parse($window.localStorage.getItem('currentUser'));
+    // console.log('currentUser');
+  };
 
-const setCurrentUser = function(id) {
-  currentUser = id;
-}
-
-const getNewUserRegisteredInfo = function() {
-  return addNewUserRegisteredObj;
-};
-// addNewUserRegisteredObj
+  const setCurrentUser = function(user) {
+    currentUser = user;
+  };
 
   const logIn = function(userObj) {
     return firebase.auth().signInWithEmailAndPassword(userObj.email, userObj.password);
@@ -59,8 +57,7 @@ const getNewUserRegisteredInfo = function() {
         userName: userObj.displayName,
         userPhoto: userObj.photoURL
       };
-      debugger;
-      aaddUserInfo.push(addUserInfotoFB);
+      addUserInfo.push(addUserInfotoFB);
       console.log('userObjFB.uid', addUserInfotoFB);
       let newObj = JSON.stringify(addUserInfotoFB);
       return $http.post(`${FBCreds.databaseURL}/users.json`, newObj)
@@ -86,5 +83,5 @@ const getNewUserRegisteredInfo = function() {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  return { isAuthenticated, getCurrentUser, setCurrentUser, getNewUserRegisteredInfo, logIn, logOut, register, authWithProvider, };
+  return { isAuthenticated, getCurrentUser, setCurrentUser, logIn, logOut, register, authWithProvider, };
 });

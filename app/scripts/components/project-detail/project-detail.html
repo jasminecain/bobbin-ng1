@@ -1,20 +1,68 @@
-<!-- project cards -->
-<!-- <div class="row">
-  <div class="col s12 m8">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <a href="#"><img ng-src="">{{project.img}}</a>
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">{{project.title}}</span>
-        <p>{{project.description}}</p>
-        <p><a href="#">{{project.url}}</a></p>
-        <h4>{{project.supplylist}}</h4>
-        <div class="style-icon" id="editProject"><a ui-sref="#!/task/{{project.id}}"><i class="material-icons">mode_edit</i>Edit Project</a></div>
-        <div class="style-icon" id="deleteProject"><a href="#"><i class="material-icons">highlight_off</i>Delete Project</a></div>
+<div class="container col s12 m4 l8">
+  <h3 ng-init="init()">{{ project.title }}</h3>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img ng-src="{{ project.img }}">
+        </div>
+        <div class="card-content">
+          <p>{{ project.description }}</p>
+          <p><a href="#">{{ project.url }}</a></p>
+        </div>
+        <div class="card-action">
+          <i class="material-icons" ng-click="toEditProjectView()">mode_edit</i>
+          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+          <i class="material-icons" ng-click="emailShare(project)">email</i>
+        </div>
       </div>
     </div>
-  </div>
-</div> -->
 
-  <!-- <i class="material-icons right">more_vert</i> -->
+  <!-- SUPPLY LIST -->
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Supply List</span>
+          <p>
+            <div ng-if="!project.supplies.length">
+              <button class="btn waves-effect light-blue" data-target="addSuppliesModal" modal>Add Items</button>
+            </div>
+
+            <form ng-if="project.supplies.length">
+              <p ng-repeat="item in project.supplies">
+                <!-- checkboxes are marked completed done is true -->
+                <input type="checkbox" id="filled-in-box" class="filled-in" ng-model="item.done" />
+                <label for="filled-in-box">{{item.name}}</label>
+              </p>
+            </form>
+          </p>
+        </div>
+        <div class="card-action">
+          <!-- ACTIONS -->
+          <i class="material-icons" ui-sref="editProject.view({ projectId: project.id })">mode_edit</i>
+          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+          <i class="material-icons" ng-click="emailShare(project)">email</i>
+          <i class="material-icons icon-black print-icon" ng-click="printSupplyList()">print</i></a>
+        </div>
+      </div>
+    </div>
+
+<!-- Add Supply Items Modal -->
+<div id="addSuppliesModal" class="modal">
+  <div class="modal-content">
+    <div class="card project-form">
+      <h4>Add Supply Items</h4>
+      <form>
+        <!-- dynamically repeating supplyfield by field.id -->
+        <div class="input-field" ng-repeat="field in supplyFields">
+          <label for="item-name">Item Name</label>
+          <!-- creates a new field on enter event -->
+          <input id="{{field.id}}" type="text" class="validate" ng-model="field.itemName" ng-keyup="addNextItem($event)">
+        </div>
+        <br />
+        <button type="button" class="waves-effect light-blue btn modal-close" ng-click="saveSupplyList(project)">Done</button>
+        <button type="button" class="waves-effect blue-grey lighten-5 black-text btn modal-close" ng-click="clearForm()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
