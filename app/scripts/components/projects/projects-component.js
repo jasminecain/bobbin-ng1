@@ -14,7 +14,7 @@ bobbin.component('projectsComponent', {
     $scope.showAllProjects = function () {
       projectFactory.getAllProjects(user.uid)
         .then((projects) => {
-          console.log("showAllProjects", projects);
+          // console.log("showAllProjects", projects);
           $scope.projects = projects;
         });
     };

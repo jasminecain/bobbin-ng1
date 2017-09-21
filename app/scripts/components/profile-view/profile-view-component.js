@@ -6,9 +6,7 @@ bobbin.component('profileViewComponent', {
   controller: function(authFactory, $scope, $state) {
 
     let user = authFactory.getCurrentUser();
-    console.log(user);
-    //user is defined up until here
-    debugger;
+    // console.log(user);
 
     // On profile view initialize get user data and store in scope
     $scope.init = function() {
@@ -19,7 +17,7 @@ bobbin.component('profileViewComponent', {
             $scope.user = data;
             $scope.$apply();
       });
-      console.log('init user', user);
+      // console.log('init user', user);
     };
 
     $scope.logOut = (user) => {
@@ -28,7 +26,7 @@ bobbin.component('profileViewComponent', {
           $state.go('root');
         });
     };
-    console.log(user);
+    // console.log(user);
 
     $scope.getUserData = (user) => {
       return authFactory.isAuthenticated(user)

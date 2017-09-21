@@ -45,6 +45,7 @@ bobbin.component('projectDetailComponent', {
         $scope.supplyFields.push({ id: fieldId });
         console.log($scope.supplyFields);
 
+        //timeout; wait for data to return
         $timeout(function() {
           $window.document.getElementById(fieldId).focus();
         });

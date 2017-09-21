@@ -8,9 +8,20 @@ main {
   flex: 1 0 auto;
 }
 
+.main-nav {
+  margin-bottom: 50px;
+}
+
 .logo-img {
   height: 56px;
   line-height: 56px;
+}
+.p-padding {
+  margin-top: 40px;
+}
+
+.auth-form {
+  margin-bottom: 40px;
 }
 
 .modal {
@@ -18,8 +29,10 @@ main {
 }
 
 .profile-photo {
-  width: 15% !important;
   border-radius: 50% !important;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 15% !important;
 }
 
 .material-icons {
@@ -29,12 +42,6 @@ main {
 i.icon-black {
   color: black;
 }
-
-// .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-//   color: black;
-//   font-size: 14px !important;
-//   padding-bottom: 5px;
-// }
 
 .project-form {
   padding: 20px;
