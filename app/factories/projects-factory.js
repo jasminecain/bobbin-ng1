@@ -35,7 +35,7 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
   };
 
   const editProject = function(projectId, projectObj) {
-    console.log('id and object', projectId, projectObj);
+    // console.log('id and object', projectId, projectObj);
     return $q((resolve, reject) => {
       let newObj = JSON.stringify(projectObj);
       $http.patch(`${FBCreds.databaseURL}/projects/${projectId}.json`, newObj)

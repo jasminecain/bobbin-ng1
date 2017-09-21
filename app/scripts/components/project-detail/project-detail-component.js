@@ -15,7 +15,7 @@ bobbin.component('projectDetailComponent', {
     $scope.getProject = function(projectId) {
       projectFactory.getSingleProject(projectId)
         .then((data) => {
-          console.log('SingleProject: ', data);
+          // console.log('SingleProject: ', data);
           $scope.project = data;
         });
     };
