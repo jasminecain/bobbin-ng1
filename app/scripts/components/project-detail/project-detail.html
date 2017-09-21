@@ -32,14 +32,14 @@
               <p ng-repeat="item in project.supplies">
                 <!-- checkboxes are marked completed done is true -->
                 <!-- grabs index of the array from ng-repeat; id & for -->
-                <input type="checkbox" id="{{$index}}" class="filled-in" ng-model="item.done" />
+                <input type="checkbox" id="{{$index}}" class="filled-in" ng-model="item.done" ng-change="toggleSupplyItem(project)" />
                 <label for="{{$index}}">{{item.name}}</label>
               </p>
             </form>
           </p>
         </div>
         <div class="card-action">
-          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+          <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
           <!-- <i class="material-icons" ng-click="emailShare(project)">email</i> -->
           <i class="material-icons icon-black print-icon" ng-click="printSupplyList()">print</i></a>
         </div>

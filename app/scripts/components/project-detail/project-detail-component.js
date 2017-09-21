@@ -63,6 +63,13 @@ bobbin.component('projectDetailComponent', {
         }
       });
 
+      $scope.deleteProject = function(project) {
+        projectFactory.deleteProject(project.id)
+          .then(() => {
+            $scope.showAllProjects();
+          });
+      };
+
       //Add array of supplies to the project object
       //before patch request
       project.supplies = supplyItems;
@@ -72,6 +79,23 @@ bobbin.component('projectDetailComponent', {
         console.log('updateProject: ', data);
         $window.Materialize.toast('Supply list added!', 2000);
       });
+    };
+
+    //looping over over to delete hashkeys from {}
+    $scope.toggleSupplyItem = function(project) {
+      angular.forEach(project.supplies, (supply) => {
+        delete supply.$$hashKey;
+      });
+
+    // debugger;
+    projectFactory.editProject($state.params.projectId, project)
+      .then((data) => {
+        $window.Materialize.toast('Project Updated!', 2000);
+      });
+    };
+
+    $scope.toggleItem = function (item) {
+      console.log(item);
     };
 
   }

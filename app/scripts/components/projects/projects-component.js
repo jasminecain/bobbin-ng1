@@ -29,6 +29,7 @@ bobbin.component('projectsComponent', {
           console.log('submitData', data);
           $scope.showAllProjects();
           $scope.clearForm();
+          $window.Materialize.toast('Project Created!', 2000);
         });
     };
 
