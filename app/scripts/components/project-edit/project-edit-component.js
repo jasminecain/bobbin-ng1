@@ -20,6 +20,12 @@ bobbin.component('editProjectComponent', {
     };
 
     $scope.updateProject = function(project) {
+
+      //looping over supplies to delete $$hashKey from {} to correctly target
+      angular.forEach(project.supplies, (supply) => {
+        delete supply.$$hashKey;
+      });
+      // debugger;
       projectFactory.editProject($state.params.projectId, project)
       .then((data) => {
         console.log('updateProject: ', data);
