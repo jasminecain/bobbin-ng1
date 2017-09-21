@@ -1,7 +1,7 @@
 <nav class="main-nav">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo"><img class="logo-img" ng-src="app/assets/images/Bobbin.png"></a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <ul id="nav-mobile" class="right hide-on-med-and-down" ng-if="currentUser">
       <li><a ui-sref="projects.items">Create Project</a></li>
       <li><a ui-sref="profile.view">Profile</a></li>
       <li><a ng-click="logOut()">Log Out</a></li>
