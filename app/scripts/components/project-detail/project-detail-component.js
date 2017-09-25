@@ -58,17 +58,11 @@ bobbin.component('projectDetailComponent', {
       const supplyItems = [];
       angular.forEach($scope.supplyFields, (field) => {
         if (field.itemName) {
-          //create an item set done to false, done is false
+          //create an item set done to false, not checked
+          //checked done = true
           supplyItems.push({ name: field.itemName, done: false });
         }
       });
-
-      $scope.deleteProject = function(project) {
-        projectFactory.deleteProject(project.id)
-          .then(() => {
-            $scope.showAllProjects();
-          });
-      };
 
       //Add array of supplies to the project object
       //before patch request
@@ -79,6 +73,15 @@ bobbin.component('projectDetailComponent', {
         console.log('updateProject: ', data);
         $window.Materialize.toast('Supply list added!', 2000);
       });
+    };
+
+    $scope.deleteProject = function(project) {
+      project.id = $scope.projectId;
+      // debugger;
+      projectFactory.deleteProject(project.id)
+        .then(() => {
+          $state.go('projects.items');
+        });
     };
 
     //looping over over to delete hashkeys from {}
@@ -97,6 +100,5 @@ bobbin.component('projectDetailComponent', {
     $scope.toggleItem = function (item) {
       console.log(item);
     };
-
   }
 });

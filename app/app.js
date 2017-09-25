@@ -9,7 +9,7 @@ const bobbin = angular.module('BobbinApp', [
 // If minifying code need to wrap dependencies and function in array
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  //page doesn't exist, back to route
+  //page doesn't exist, back to root; homepage is login
   $urlRouterProvider.otherwise('/');
 
   //state SPA not pages
@@ -28,11 +28,14 @@ const bobbin = angular.module('BobbinApp', [
   //   }
   // })
 
+  //parent state
+  //abstract true is a placeholder abstract state, dooes not render.
   .state('projects', {
     abstract: true,
     templateUrl: 'app/templates/pages/projects.html'
   })
 
+  //child state
   .state('projects.items', {
     url: '/projects',
     views: {

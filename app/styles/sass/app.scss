@@ -31,7 +31,7 @@ main {
   margin-bottom: 40px;
 }
 
-.btn-create {
+.btn-create, .btn-profile {
   margin: 15px;
 }
 
@@ -42,12 +42,8 @@ main {
 .profile-photo {
   border-radius: 50% !important;
   margin-left: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
   width: 15% !important;
-}
-
-.btn-profile {
-  margin: 12px;
 }
 
 .material-icons {

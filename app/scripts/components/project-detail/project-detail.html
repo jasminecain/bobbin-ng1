@@ -8,12 +8,12 @@
         </div>
         <div class="card-content">
           <p>{{ project.description }}</p>
-          <p><a href="#">{{ project.url }}</a></p>
+          <p><a href="{{ project.url }}">{{ project.url }}</a></p>
         </div>
         <div class="card-action">
           <i class="material-icons" ng-click="toEditProjectView()">mode_edit</i>
-          <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
-          <i class="material-icons icon-black print-icon" ng-click="printSupplyList()">print</i></a>
+          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+          <i class="material-icons icon-black print-icon" ng-click="printSupplyList()">print</i>
           <i class="material-icons" ng-click="emailShare(project)">email</i>
         </div>
       </div>
@@ -45,6 +45,8 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
 
 <!-- Add Supply Items Modal -->
 <div id="addSuppliesModal" class="modal">

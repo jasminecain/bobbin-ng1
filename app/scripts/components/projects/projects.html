@@ -42,11 +42,11 @@
           </div>
           <div class="input-field">
             <label for="description">Description</label>
-            <input id="description" type="text" class="validate" ng-model="project.description">
+            <input id="description" type="text" class="validate"  ng-model="project.description">
           </div>
           <div class="input-field">
             <label for="URL">Tutorial URL</label>
-            <input id="URL" type="text" class="validate" ng-model="project.url">
+            <input id="URL" type="text" class="validate" pattern="http?://.+" ng-model="project.url">
           </div>
           <div class="input-field">
             <label for="supply-title">Supply Title</label>
@@ -64,23 +64,26 @@
     </div>
   </div>
 
-  <div class="row" ng-init="init()">
-    <div class="col s12 m4" ng-repeat="project in projects | filter : search">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <a ui-sref="projects.detail({ projectId: project.id })"><img ng-src="{{ project.img }}"></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4" ui-sref="projects.detail({ projectId: project.id })">{{ project.title }}</span>
-          <p>{{ project.description }}</p>
-          <p><a href="#">{{ project.url }}</a></p>
-        </div>
-        <div class="card-action">
-          <!-- function: passing in project id as params -->
-          <!-- <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i> -->
-          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
-          <i class="material-icons" ng-click="emailShare(project)">email</i>
-        </div>
+
+  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+    <div class="row" ng-init="init()">
+      <div class="col s12 m4" ng-repeat="project in projects | filter : search">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <a ui-sref="projects.detail({ projectId: project.id })"><img ng-src="{{ project.img }}"></a>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4" ui-sref="projects.detail({ projectId: project.id })">{{ project.title }}</span>
+            <p>{{ project.description }}</p>
+            <p><a href="{{ project.url }}">{{ project.url }}</a></p>
+          </div>
+          <div class="card-action">
+            <!-- function: passing in project id as params -->
+            <!-- <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i> -->
+            <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+            <i class="material-icons" ng-click="emailShare(project)">email</i>
+          </div>
+          </div>
         </div>
       </div>
     </div>
