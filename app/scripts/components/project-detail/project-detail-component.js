@@ -90,6 +90,20 @@ bobbin.component('projectDetailComponent', {
         delete supply.$$hashKey;
       });
 
+    $scope.deleteItem = function(project, index) {
+      project.supplies.splice(index, 1)
+      // debugger;
+      // console.log(index);
+      // targeting project.supplies[index] to delete
+      projectFactory.editProject($scope.projectId, project)
+        .then((data) => {
+          console.log(data);
+          // debugger;
+          $state.go('projects.detail');
+        });
+        // console.log(index);
+    };
+
     // debugger;
     projectFactory.editProject($state.params.projectId, project)
       .then((data) => {

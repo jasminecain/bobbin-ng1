@@ -62,9 +62,9 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
     });
   };
 
-  const deleteProject = function(id) {
+  const deleteProject = function(projectId) {
     return $q((resolve, reject) => {
-      $http.delete(`${FBCreds.databaseURL}/projects/${id}.json`)
+      $http.delete(`${FBCreds.databaseURL}/projects/${projectId}.json`)
       .then((response) => {
         resolve(response);
       })

@@ -15,7 +15,7 @@ bobbin.component('editProjectComponent', {
     $scope.getProject = function(projectId) {
       projectFactory.getSingleProject(projectId)
         .then((data) => {
-          // console.log('SingleProject: ', data);
+          console.log('SingleProject: ', data);
           $scope.project = data;
         });
     };
@@ -59,7 +59,7 @@ bobbin.component('editProjectComponent', {
       angular.forEach(project.supplies, (supply) => {
         delete supply.$$hashKey;
       });
-      // debugger;
+      debugger;
       projectFactory.editProject($state.params.projectId, project)
         .then((data) => {
           // Resetting supplyFields to 1

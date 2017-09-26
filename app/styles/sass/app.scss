@@ -31,6 +31,11 @@ main {
   margin-bottom: 40px;
 }
 
+.delete-items{
+  font-size: 18px;
+  margin-top: 5px;
+}
+
 .btn-create, .btn-profile {
   margin: 15px;
 }
@@ -52,6 +57,10 @@ main {
 
 i.icon-black {
   color: black;
+}
+
+i.icon-red {
+  color: red;
 }
 
 .project-form {

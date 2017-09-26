@@ -35,6 +35,7 @@
                 <!-- grabs index of the array from ng-repeat; id & for -->
                 <input type="checkbox" id="{{$index}}" class="filled-in" ng-model="item.done" ng-change="toggleSupplyItem(project)" />
                 <label for="{{$index}}">{{item.name}}</label>
+                <i class="material-icons icon-red delete-items" ng-click="deleteItem(project, $index)">highlight_off</i>
               </p>
             </form>
           </p>
