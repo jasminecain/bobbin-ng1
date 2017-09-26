@@ -1,7 +1,7 @@
 <div class="container col s12 m4 l8" ng-init="init()">
   <div class="card project-form">
     <h3>Edit Project</h3>
-    <form ng-submit="updateProject(project)">
+    <form>
       <div  class="input-field">
         <label for="project-title">Project Title</label>
         <input id="project-title" type="text" class="validate" ng-model="project.title">
@@ -41,8 +41,9 @@
       </div>
       <br />
       <br />
-      <button type="submit" class="waves-effect light-blue btn">Update Project</button>
+      <button type="button" class="waves-effect light-blue btn" ng-click="updateProject(project)">Update Project</button>
       <button type="button" class="waves-effect btn blue-grey lighten-5 black-text" ng-click="backBtn()">Back</button>
     </form>
   </div>
 </div>
+<!-- changed to button instead of submit to avoid duplicating input-fields -->

@@ -44,16 +44,17 @@ bobbin.component('editProjectComponent', {
 
       // Building a new object to push newSupply into project.supplies
       angular.forEach($scope.supplyFields, (supply) => {
-        let newSupply = {
-          done: false,
-          name: supply.itemName
-        };
-        console.log(newSupply);
-        project.supplies.push(newSupply);
-        console.log(project.supplies);
+        if (supply.itemName) {
+          let newSupply = {
+            done: false,
+            name: supply.itemName
+          };
+          console.log(newSupply);
+          project.supplies.push(newSupply);
+          console.log(project.supplies);
+        }
       });
 
-      debugger;
       // Looping over supplies to delete $$hashKey from {} to correctly target
       angular.forEach(project.supplies, (supply) => {
         delete supply.$$hashKey;
@@ -61,6 +62,8 @@ bobbin.component('editProjectComponent', {
       // debugger;
       projectFactory.editProject($state.params.projectId, project)
         .then((data) => {
+          // Resetting supplyFields to 1
+          $scope.supplyFields =[{ id: 'editField1' }];
           console.log('updateProject: ', data);
           $window.Materialize.toast('Project Updated!', 2000);
         });
