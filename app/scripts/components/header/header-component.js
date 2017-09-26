@@ -7,7 +7,7 @@ bobbin.component('headerComponent', {
 
     //moved header component into each page due to scoping issues; nav hides until login
     $scope.currentUser = $window.localStorage.getItem('currentUser');
-    console.log($scope.currentUser);
+    // console.log($scope.currentUser);
 
     $scope.logOut = () => {
       authFactory.logOut($scope.account)

@@ -13,15 +13,31 @@ main {
 }
 
 .logo-img {
-  height: 56px;
-  line-height: 56px;
+  margin: 0 600px;
+  width: 275px;
 }
+
+.brand-logo, a.brand-logo {
+  font-family: 'Lily Script One', cursive;
+  font-size: 40px;
+  margin-left: 20px;
+}
+
 .p-padding {
   margin-top: 40px;
 }
 
 .auth-form {
   margin-bottom: 40px;
+}
+
+.delete-items{
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.btn-create, .btn-profile {
+  margin: 15px;
 }
 
 .modal {
@@ -31,7 +47,7 @@ main {
 .profile-photo {
   border-radius: 50% !important;
   margin-left: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
   width: 15% !important;
 }
 
@@ -43,8 +59,21 @@ i.icon-black {
   color: black;
 }
 
+i.icon-red {
+  color: red;
+}
+
 .project-form {
   padding: 20px;
+}
+
+.quote{
+  font-family: 'Arvo', serif;
+  font-size: 18px;
+}
+
+.word-pop {
+  font-family: 'Lily Script One', cursive;
 }
 
 .nav-wrapper, .page-footer {

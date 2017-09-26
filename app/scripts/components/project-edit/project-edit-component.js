@@ -3,11 +3,12 @@
 bobbin.component('editProjectComponent', {
 
   templateUrl: 'app/scripts/components/project-edit/project-edit.html',
-  controller: function(authFactory, projectFactory, $state, $scope, $window) {
+  controller: function(authFactory, projectFactory, $state, $scope, $window, $timeout) {
 
+    $scope.supplyFields =[{ id: 'editField1' }];
 
     $scope.init = function() {
-      //grabbing params of projectId on the current state
+      // Grabbing params of projectId on the current state
       $scope.getProject($state.params.projectId);
     };
 
@@ -19,22 +20,57 @@ bobbin.component('editProjectComponent', {
         });
     };
 
-    $scope.updateProject = function(project) {
+    $scope.addNextItem = function(e) {
+      // If enterkey pressed & there's a value is not equal to empty ''
+      // Do not want to fire if there's no value
+      if (e.which === 13 && e.currentTarget.value !== '') {
+        const supplies = [];
+        let editFieldId = `editField${$scope.supplyFields.length + 1}`;
+        console.log(editFieldId);
 
-      //looping over supplies to delete $$hashKey from {} to correctly target
+        // Pushing input field by id (line 8); creating fields when length increases
+        $scope.supplyFields.push({ id: editFieldId });
+        console.log($scope.supplyFields);
+
+        // Timeout; wait for data to return
+        $timeout(function() {
+          $window.document.getElementById(editFieldId).focus();
+        });
+      }
+    };
+
+    $scope.updateProject = function(project) {
+      console.log($scope.supplyFields);
+
+      // Building a new object to push newSupply into project.supplies
+      angular.forEach($scope.supplyFields, (supply) => {
+        if (supply.itemName) {
+          let newSupply = {
+            done: false,
+            name: supply.itemName
+          };
+          console.log(newSupply);
+          project.supplies.push(newSupply);
+          console.log(project.supplies);
+        }
+      });
+
+      // Looping over supplies to delete $$hashKey from {} to correctly target
       angular.forEach(project.supplies, (supply) => {
         delete supply.$$hashKey;
       });
-      // debugger;
+      debugger;
       projectFactory.editProject($state.params.projectId, project)
-      .then((data) => {
-        console.log('updateProject: ', data);
-        $window.Materialize.toast('Project Updated!', 2000);
-      });
+        .then((data) => {
+          // Resetting supplyFields to 1
+          $scope.supplyFields =[{ id: 'editField1' }];
+          console.log('updateProject: ', data);
+          $window.Materialize.toast('Project Updated!', 2000);
+        });
     };
 
     $scope.backBtn = function() {
-      //equivalent to back button
+      // Equivalent to back button
       $window.history.back();
     };
   }

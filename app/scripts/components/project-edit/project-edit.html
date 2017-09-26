@@ -1,7 +1,7 @@
 <div class="container col s12 m4 l8" ng-init="init()">
   <div class="card project-form">
     <h3>Edit Project</h3>
-    <form ng-submit="updateProject(project)">
+    <form>
       <div  class="input-field">
         <label for="project-title">Project Title</label>
         <input id="project-title" type="text" class="validate" ng-model="project.title">
@@ -16,7 +16,7 @@
       </div>
       <div class="input-field">
         <label for="URL">Tutorial URL</label>
-        <input id="URL" type="text" class="validate" ng-model="project.url">
+        <input id="URL" type="text" class="validate" pattern="http?://.+" ng-model="project.url">
       </div>
       <!-- <div class="input-field">
         <label for="supply-title">Supply Title</label>
@@ -30,12 +30,20 @@
       <h4>Edit Supply List</h4>
 
       <div class="input-field" ng-repeat="supply in project.supplies">
-        <label for="item-name">Item Name</label>
+        <!-- <label for="item-name">Item Name</label> -->
         <input type="text" class="validate" ng-model="supply.name">
+        <label for="item-name">Item Name</label>
       </div>
-      <br><br>
-      <button type="submit" class="waves-effect light-blue btn">Update Project</button>
+
+      <div class="input-field" ng-repeat="field in supplyFields">
+        <input id="{{field.id}}" type="text" class="validate" ng-model="field.itemName" ng-keyup="addNextItem($event)">
+        <label for="item-name">New Item Name</label>
+      </div>
+      <br />
+      <br />
+      <button type="button" class="waves-effect light-blue btn" ng-click="updateProject(project)">Update Project</button>
       <button type="button" class="waves-effect btn blue-grey lighten-5 black-text" ng-click="backBtn()">Back</button>
     </form>
   </div>
 </div>
+<!-- changed to button instead of submit to avoid duplicating input-fields -->
