@@ -3,7 +3,8 @@
 const bobbin = angular.module('BobbinApp', [
   'ui.materialize',
   'ui.router',
-  'ui.router.state.events'
+  'ui.router.state.events',
+  'wu.masonry'
 ])
 
 // If minifying code need to wrap dependencies and function in array

@@ -21,6 +21,7 @@
   "dependencies": {
     "@uirouter/angularjs": "latest",
     "angular": "^1.6.4",
+    "angular-masonry": "^0.17.0",
     "angular-ui-router": "^1.0.3",
     "firebase": "^4.1.3"
   }

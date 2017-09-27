@@ -91,7 +91,7 @@ bobbin.component('projectDetailComponent', {
       });
 
     $scope.deleteItem = function(project, index) {
-      project.supplies.splice(index, 1)
+      project.supplies.splice(index, 1);
       // debugger;
       // console.log(index);
       // targeting project.supplies[index] to delete
