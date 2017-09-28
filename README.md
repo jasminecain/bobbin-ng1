@@ -32,4 +32,4 @@ npm install --save http-server
 Then open a new terminal tab and run:
 
 ```bash
-hs -o```
+hs -o
