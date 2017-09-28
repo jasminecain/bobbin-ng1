@@ -83,29 +83,33 @@ bobbin.component('projectDetailComponent', {
           $state.go('projects.items');
         });
     };
+    $scope.deleteItem = function(project, index) {
+      // debugger;
+      project.supplies.splice(index, 1);
+      angular.forEach(project.supplies, (supply) => {
+        delete supply.$$hashKey;
+      });
+      // debugger;
+      // console.log(project);
+      // console.log(index);
+      // targeting project.supplies[index] to delete
+      projectFactory.editProject($scope.projectId, project)
+        .then((data) => {
+          // debugger;
+          // console.log(data);
+          // debugger;
+          $state.go('projects.detail');
+        });
+      // console.log(index);
+    };
 
     //looping over over to delete hashkeys from {}
     $scope.toggleSupplyItem = function(project) {
       angular.forEach(project.supplies, (supply) => {
         delete supply.$$hashKey;
       });
-
-    $scope.deleteItem = function(project, index) {
-      project.supplies.splice(index, 1);
       // debugger;
-      // console.log(index);
-      // targeting project.supplies[index] to delete
-      projectFactory.editProject($scope.projectId, project)
-        .then((data) => {
-          console.log(data);
-          // debugger;
-          $state.go('projects.detail');
-        });
-        // console.log(index);
-    };
-
-    // debugger;
-    projectFactory.editProject($state.params.projectId, project)
+      projectFactory.editProject($state.params.projectId, project)
       .then((data) => {
         $window.Materialize.toast('Project Updated!', 2000);
       });
