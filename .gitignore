@@ -3,7 +3,7 @@
 # compiled output
 /dist
 /tmp
-app/values
+app/values/fb-creds.js
 app/styles/css
 
 # dependencies

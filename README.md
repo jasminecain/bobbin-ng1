@@ -14,15 +14,22 @@ A bobbin is a cylinder of wounded thread that is used in sewing and embroidery m
 ### Spin up
 ```bash
 npm install
+http -server
 grunt
 ```
 ### Staging
-[Firebase](https://firebase.google.com/) credentials are needed in order to stage this app. You can create an account at the provided link and create a javascript file and plug in your credentials with the code snippet below.
-```
-'use strict';
+[Firebase](https://firebase.google.com/) credentials are needed in order to stage this app. After creating a Firebase account, `cp` fb-creds.dist.js over to fb-creds.js and add your credentials.
 
-bobbin.constant('FBCreds', {
-  apiKey: '',
-  authDomain: '',
-  databaseURL: '',
-});```
+```bash
+cp app/values/fb-creds.dist.js app/values/fb-creds.js
+```
+
+You'll need a server to run Bobbin in your browser, if you don't have one installed, [http-server](https://www.npmjs.com/package/http-server) is a quick option.
+
+```bash
+npm install --save http-server
+```
+Then open a new terminal tab and run:
+
+```bash
+hs -o```
