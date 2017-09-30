@@ -1,5 +1,9 @@
 <div class="container col s12 m4 l8">
   <h3 ng-init="init()">{{ project.title }}</h3>
+  <div class="col">
+    <a ui-sref="photoGallery.view" class="btn waves-effect btn-create light-blue">Add Project Photos</a>
+  </div>
+
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
@@ -17,6 +21,8 @@
           <i class="material-icons" ng-click="emailShare(project)">email</i>
         </div>
       </div>
+
+      <photo-gallery-component></photo-gallery-component>
     </div>
 
   <!-- SUPPLY LIST -->
@@ -68,3 +74,4 @@
     </div>
   </div>
 </div>
+

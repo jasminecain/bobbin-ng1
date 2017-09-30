@@ -2,6 +2,6 @@
 
 bobbin.component('photoGalleryComponent', {
 
-  templateUrl: 'app/scripts/components/photo-gallery-view/photo-gallery-view.html',
+  templateUrl: 'app/scripts/components/photo-gallery/photo-gallery.html',
   controller: function() {}
 });
