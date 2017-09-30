@@ -81,13 +81,19 @@ i.icon-red {
   background: #00acc1;
 }
 
+
+.project-photo-container {
+  margin-bottom: 22px;
+
+  .project-photo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+  }
+}
+
 .footer-copyright {
   height: 80%;
   text-align: center;
-}
-
-.photo-gallery {
-  img {
-    width: 100%;
-  }
 }

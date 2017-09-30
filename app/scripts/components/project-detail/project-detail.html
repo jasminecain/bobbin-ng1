@@ -1,7 +1,20 @@
 <div class="container col s12 m4 l8">
   <h3 ng-init="init()">{{ project.title }}</h3>
   <div class="col">
-    <a ui-sref="photoGallery.view" class="btn waves-effect btn-create light-blue">Add Project Photos</a>
+    <button class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
+      Upload Photo
+    </button>
+    <!-- <br>
+    <br>Files Upload Progess: -->
+    <!-- <ul>
+      <li ng-repeat="f in files" style="font:smaller">
+      {{f.name}}
+      </li>
+    </ul>
+    <span class="progress" ng-show="progress >= 0">
+      <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+    </span> -->
+    {{errorMsg}}
   </div>
 
   <div class="row">
@@ -22,7 +35,15 @@
         </div>
       </div>
 
-      <photo-gallery-component></photo-gallery-component>
+      <div class="row">
+        <!-- track by $index is tracking each item by index to allow dupes and prevent dupe error-->
+        <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
+          <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}"></div>
+          <!-- <img ng-src="{{photo}}"> -->
+        </div>
+      </div>
+
+      <!-- <photo-gallery-component></photo-gallery-component> -->
     </div>
 
   <!-- SUPPLY LIST -->

@@ -1,11 +1,6 @@
-<div class="row photo-gallery">
-  <div class="col s4">
-    <img src="https://image.ibb.co/jdo5ik/bags.jpg">
-  </div>
-  <div class="col s4">
-    <img src="https://image.ibb.co/jdo5ik/bags.jpg">
-  </div>
-  <div class="col s4">
-    <img src="https://image.ibb.co/jdo5ik/bags.jpg">
+<div class="row">
+  <!-- track by $index is tracking each item by index to allow dupes and prevent dupe error-->
+  <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
+    <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}"></div>
   </div>
 </div>
