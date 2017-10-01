@@ -15,19 +15,23 @@ bobbin.component('projectDetailComponent', {
     $scope.getProject = function(projectId) {
       projectFactory.getSingleProject(projectId)
         .then((data) => {
-          // console.log('SingleProject: ', data);
+          debugger;
+          console.log('SingleProject: ', data);
           $scope.project = data;
         });
     };
 
     $scope.uploadFile = function(file, project) {
+      debugger;
       // converting file to base64
       Upload.base64DataUrl(file).then(function(base64) {
+
         if (!project.photos) {
           project.photos = [];
-        } else {
-          project.photos.push(base64);
         }
+
+        project.photos.push(base64);
+        project.supplies = $scope.deleteHashKeys(project.supplies);
 
         projectFactory.editProject($scope.projectId, project)
           .then((data) => {
@@ -86,10 +90,10 @@ bobbin.component('projectDetailComponent', {
       project.supplies = supplyItems;
 
       projectFactory.editProject($scope.projectId, project)
-      .then((data) => {
-        console.log('updateProject: ', data);
-        $window.Materialize.toast('Supply list added!', 2000);
-      });
+        .then((data) => {
+          console.log('updateProject: ', data);
+          $window.Materialize.toast('Supply list added!', 2000);
+        });
     };
 
     $scope.deleteProject = function(project) {
@@ -100,12 +104,13 @@ bobbin.component('projectDetailComponent', {
           $state.go('projects.items');
         });
     };
+
     $scope.deleteItem = function(project, index) {
       // debugger;
       project.supplies.splice(index, 1);
-      angular.forEach(project.supplies, (supply) => {
-        delete supply.$$hashKey;
-      });
+
+      project.supplies = $scope.deleteHashKeys(project.supplies);
+
       // debugger;
       // console.log(project);
       // console.log(index);
@@ -121,9 +126,7 @@ bobbin.component('projectDetailComponent', {
 
     // looping over over to delete hashkeys from {}
     $scope.toggleSupplyItem = function(project) {
-      angular.forEach(project.supplies, (supply) => {
-        delete supply.$$hashKey;
-      });
+      project.supplies = $scope.deleteHashKeys(project.supplies);
       // debugger;
       projectFactory.editProject($state.params.projectId, project)
       .then((data) => {
@@ -133,6 +136,17 @@ bobbin.component('projectDetailComponent', {
 
     $scope.toggleItem = function (item) {
       console.log(item);
+    };
+
+    $scope.deleteHashKeys = function(supplies) {
+      let suppliesArray = [];
+
+      angular.forEach(supplies, (supply) => {
+        delete supply.$$hashKey;
+        suppliesArray.push(supply);
+      });
+
+      return suppliesArray;
     };
   }
 });

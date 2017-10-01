@@ -1,20 +1,14 @@
 <div class="container col s12 m4 l8">
+  <div class="progress-container">
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+  </div>
   <h3 ng-init="init()">{{ project.title }}</h3>
   <div class="col">
     <button class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
       Upload Photo
     </button>
-    <!-- <br>
-    <br>Files Upload Progess: -->
-    <!-- <ul>
-      <li ng-repeat="f in files" style="font:smaller">
-      {{f.name}}
-      </li>
-    </ul>
-    <span class="progress" ng-show="progress >= 0">
-      <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-    </span> -->
-    {{errorMsg}}
   </div>
 
   <div class="row">
@@ -51,11 +45,9 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">Supply List</span>
-          <p>
             <div ng-if="!project.supplies.length">
               <button class="btn waves-effect light-blue" data-target="addSuppliesModal" modal>Add Items</button>
             </div>
-
             <form ng-if="project.supplies.length">
               <p ng-repeat="item in project.supplies">
                 <!-- checkboxes are marked completed done is true -->

@@ -26,7 +26,7 @@ bobbin.component('projectsComponent', {
 
       projectFactory.addProject(project)
         .then((data) => {
-          // console.log('submitData', data);
+          console.log('submitData', data);
           $scope.showAllProjects();
           $scope.clearForm();
           $window.Materialize.toast('Project Created!', 2000);
