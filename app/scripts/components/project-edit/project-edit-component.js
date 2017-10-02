@@ -69,7 +69,7 @@ bobbin.component('editProjectComponent', {
         });
     };
 
-    $scope.uploadFile = function(file, project) {
+    $scope.uploadPhoto = function(file, project) {
       if (file) {
         // converting file to base64
         Upload.base64DataUrl(file).then(function(base64) {
@@ -78,9 +78,19 @@ bobbin.component('editProjectComponent', {
           }
 
           project.photos.push(base64);
+          $window.Materialize.toast('Photo Uploaded!', 2000);
         });
       }
     };
+
+    $scope.deletePhoto = function(project, index) {
+      debugger;
+      project.photos.splice(index, 1);
+
+      // project.photos = $scope.deleteHashKeys(project.photos);
+      $window.Materialize.toast('Photo deleted!', 2000);
+    };
+
 
     $scope.deleteHashKeys = function(supplies) {
       let suppliesArray = [];
@@ -96,6 +106,7 @@ bobbin.component('editProjectComponent', {
 
     $scope.backBtn = function() {
       // Equivalent to back button
+      // $state.go('projects.detail');
       $window.history.back();
     };
   }

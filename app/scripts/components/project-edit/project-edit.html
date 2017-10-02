@@ -40,7 +40,7 @@
         <label for="item-name">New Item Name</label>
       </div>
         <h4>Edit Project Photos</h4>
-        <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
+        <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadPhoto($file, project)" accept="image/jpg, image/png">
           Upload Photo
         </button>
         <div class="row">
@@ -48,6 +48,12 @@
             <div class="row">
               <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
                 <div class="col project-photo" ng-style="{'background-image':'url(' + photo + ')'}">
+                  <ul class="list-item-image-tools hover-display" data-action="list-tools">
+                    <li class="tool-delete" data-action="delete">
+                      <i class="material-icons" ng-click="deletePhoto(project, $index)">delete_forever</i>
+                      <span class="label label-delete">Delete</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

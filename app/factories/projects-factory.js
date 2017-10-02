@@ -40,6 +40,7 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
       let newObj = JSON.stringify(projectObj);
       $http.put(`${FBCreds.databaseURL}/projects/${projectId}.json`, newObj)
         .then((project) => {
+          debugger;
           resolve(project.data);
         })
         .catch((error) => {

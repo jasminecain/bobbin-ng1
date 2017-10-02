@@ -6,8 +6,7 @@
   </div> -->
   <h3>{{ project.title }}</h3>
   <div class="col">
-    <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
-      Upload Photo
+    <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadPhoto($file, project)" accept="image/jpg, image/png"> Upload Photo
     </button>
   </div>
 
@@ -33,6 +32,12 @@
         <!-- track by $index is tracking each item by index to allow dupes and prevent dupe error-->
         <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
           <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}">
+            <ul class="list-item-image-tools hover-display" data-action="list-tools">
+              <li class="tool-delete" data-action="delete">
+                <i class="material-icons" ng-click="deletePhoto(project, $index)">delete_forever</i>
+                <span class="label label-delete">Delete</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

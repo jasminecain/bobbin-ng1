@@ -20,7 +20,7 @@ bobbin.component('projectDetailComponent', {
         });
     };
 
-    $scope.uploadFile = function(file, project) {
+    $scope.uploadPhoto = function(file, project) {
       // converting file to base64
       Upload.base64DataUrl(file).then(function(base64) {
 
@@ -109,8 +109,9 @@ bobbin.component('projectDetailComponent', {
     $scope.deleteItem = function(project, index) {
       // debugger;
       project.supplies.splice(index, 1);
-
+        $window.alert('Are you sure you want to delete this item?');
       project.supplies = $scope.deleteHashKeys(project.supplies);
+
 
       // debugger;
       // console.log(project);
@@ -137,6 +138,19 @@ bobbin.component('projectDetailComponent', {
 
     $scope.toggleItem = function (item) {
       console.log(item);
+    };
+
+    $scope.deletePhoto = function(project, index) {
+      // debugger;
+      project.photos.splice(index, 1);
+      project.supplies = $scope.deleteHashKeys(project.supplies);
+      debugger;
+      projectFactory.editProject($scope.projectId, project)
+        .then((data) => {
+          debugger;
+          $state.go('projects.detail');
+        });
+      $window.Materialize.toast('Photo deleted!', 2000);
     };
 
     $scope.deleteHashKeys = function(supplies) {
