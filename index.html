@@ -12,8 +12,10 @@
   </head>
 
   <body>
+    <div class="loading-overlay">
     <ui-view></ui-view>
     <footer-component></footer-component>
+    </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
@@ -23,6 +25,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
     <script type="text/javascript" src="node_modules/masonry-layout/dist/masonry.pkgd.js"></script>
     <script type="text/javascript" src="node_modules/angular-masonry/src/angular-masonry.js"></script>
+    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
@@ -40,7 +44,7 @@
     <script type="text/javascript" src="app/scripts/components/project-edit/project-edit-component.js"></script>
     <script type="text/javascript" src="app/scripts/components/profile-view/profile-view-component.js"></script>
     <script type="text/javascript" src="app/scripts/components/project-detail/project-detail-component.js"></script>
-    <script type="text/javascript" src="app/scripts/components/photo-gallery-view/photo-gallery-component.js"></script>
+    <script type="text/javascript" src="app/scripts/components/photo-gallery/photo-gallery-component.js"></script>
 
   </body>
 </html>

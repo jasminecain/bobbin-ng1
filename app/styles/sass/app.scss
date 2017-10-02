@@ -23,7 +23,7 @@ main {
   margin-left: 20px;
 }
 
-.p-padding {
+.login-padding {
   margin-top: 40px;
 }
 
@@ -31,10 +31,41 @@ main {
   margin-bottom: 40px;
 }
 
+// .progress-container {
+//   height: 200px;
+//   position: absolute;
+//   top: 50%;
+//   width: 65%;
+//   background-color: white;
+//   height: 180px;
+//   z-index: 100;
+//   padding: 81px;
+//   left: 20%;
+//   /* right: 50%; */
+//   margin: 0 auto;
+//   border-radius: 2px;
+//   box-shadow:  0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+// }
+
+// .loading-overlay {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   background-color: rgba(0, 0, 0, 0.53);
+//   z-index: 99;
+//   height: 1250px;
+// }
+
 .delete-items{
   font-size: 18px;
   position: relative;
   top: 3px;
+}
+
+.card-wrapper {
+  text-align: center;
 }
 
 .btn-create, .btn-profile {
@@ -47,9 +78,10 @@ main {
 
 .profile-photo {
   border-radius: 50% !important;
-  margin-left: 20px;
+  margin: 0 auto;
   margin-top: 30px;
   width: 15% !important;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
 .material-icons {
@@ -79,6 +111,18 @@ i.icon-red {
 
 .nav-wrapper, .page-footer {
   background: #00acc1;
+}
+
+
+.project-photo-container {
+  margin-bottom: 22px;
+
+  .project-photo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+  }
 }
 
 .footer-copyright {

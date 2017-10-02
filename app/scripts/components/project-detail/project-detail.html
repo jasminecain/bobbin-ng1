@@ -1,5 +1,16 @@
-<div class="container col s12 m4 l8">
-  <h3 ng-init="init()">{{ project.title }}</h3>
+<div class="container col s12 m4 l8" ng-init="init()">
+  <!-- <div class="progress-container">
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+  </div> -->
+  <h3>{{ project.title }}</h3>
+  <div class="col">
+    <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
+      Upload Photo
+    </button>
+  </div>
+
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
@@ -17,6 +28,16 @@
           <i class="material-icons" ng-click="emailShare(project)">email</i>
         </div>
       </div>
+
+      <div class="row">
+        <!-- track by $index is tracking each item by index to allow dupes and prevent dupe error-->
+        <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
+          <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}">
+          </div>
+        </div>
+      </div>
+
+      <!-- <photo-gallery-component></photo-gallery-component> -->
     </div>
 
   <!-- SUPPLY LIST -->
@@ -24,11 +45,9 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">Supply List</span>
-          <p>
             <div ng-if="!project.supplies.length">
               <button class="btn waves-effect light-blue" data-target="addSuppliesModal" modal>Add Items</button>
             </div>
-
             <form ng-if="project.supplies.length">
               <p ng-repeat="item in project.supplies">
                 <!-- checkboxes are marked completed done is true -->
@@ -38,16 +57,14 @@
                 <i class="material-icons icon-red delete-items" ng-click="deleteItem(project, $index)">highlight_off</i>
               </p>
             </form>
-          </p>
-        </div>
-        <div class="card-action">
-          <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
-          <!-- <i class="material-icons" ng-click="emailShare(project)">email</i> -->
+            <div class="card-action">
+              <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
+              <!-- <i class="material-icons" ng-click="emailShare(project)">email</i> -->
+            </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 <!-- Add Supply Items Modal -->
 <div id="addSuppliesModal" class="modal">
@@ -68,3 +85,4 @@
     </div>
   </div>
 </div>
+

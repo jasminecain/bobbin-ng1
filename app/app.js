@@ -4,7 +4,8 @@ const bobbin = angular.module('BobbinApp', [
   'ui.materialize',
   'ui.router',
   'ui.router.state.events',
-  'wu.masonry'
+  'wu.masonry',
+  'ngFileUpload'
 ])
 
 // If minifying code need to wrap dependencies and function in array
@@ -85,23 +86,7 @@ const bobbin = angular.module('BobbinApp', [
       }
     },
     data: { requireAuth: true }
-  })
-
-  .state('photoGallery', {
-    abstract: true,
-    templateUrl: 'app/templates/pages/photo-gallery-view.html',
-  })
-
-  .state('photoGallery.view', {
-    url: '/photo-gallery',
-    views: {
-      'photoGallery': {
-        component: 'photoGalleryComponent'
-      }
-    },
-    data: { requireAuth: true }
   });
-
 }])
 
 .run(function($rootScope, $state, FBCreds, authFactory) {

@@ -3,7 +3,7 @@
 bobbin.component('projectDetailComponent', {
 
   templateUrl: 'app/scripts/components/project-detail/project-detail.html',
-  controller: function($scope, $state, authFactory, projectFactory, $window, $timeout) {
+  controller: function($scope, $state, authFactory, projectFactory, $window, $timeout, Upload) {
 
     $scope.projectId = $state.params.projectId;
     $scope.supplyFields =[{ id: 'field1' }];
@@ -15,9 +15,31 @@ bobbin.component('projectDetailComponent', {
     $scope.getProject = function(projectId) {
       projectFactory.getSingleProject(projectId)
         .then((data) => {
-          // console.log('SingleProject: ', data);
+          console.log('SingleProject: ', data);
           $scope.project = data;
         });
+    };
+
+    $scope.uploadFile = function(file, project) {
+      // converting file to base64
+      Upload.base64DataUrl(file).then(function(base64) {
+
+        if (!project.photos) {
+          project.photos = [];
+        }
+
+        project.photos.push(base64);
+        // if supplies property exists on project; check for supply items
+        if (project.supplies && project.supplies.length) {
+          project.supplies = $scope.deleteHashKeys(project.supplies);
+        }
+
+        projectFactory.editProject($scope.projectId, project)
+          .then((data) => {
+            $scope.project = data;
+            $window.Materialize.toast('Photo added!', 2000);
+          });
+      });
     };
 
     $scope.toEditProjectView = function() {
@@ -34,18 +56,18 @@ bobbin.component('projectDetailComponent', {
     };
 
     $scope.addNextItem = function(e) {
-      //if enterkey pressed & there's a value is not equal to empty ''
-      //do not want to fire if there's no value
-      if(e.which === 13 && e.currentTarget.value !== '') {
+      // if enterkey pressed & there's a value is not equal to empty ''
+      // do not want to fire if there's no value
+      if (e.which === 13 && e.currentTarget.value !== '') {
         const supplies = [];
         let fieldId = `field${$scope.supplyFields.length + 1}`;
         console.log(fieldId);
 
-        //pushing input field by id (line 9); creating fields when length increases
+        // pushing input field by id (line 9); creating fields when length increases
         $scope.supplyFields.push({ id: fieldId });
         console.log($scope.supplyFields);
 
-        //timeout; wait for data to return
+        // timeout; wait for data to return
         $timeout(function() {
           $window.document.getElementById(fieldId).focus();
         });
@@ -54,25 +76,25 @@ bobbin.component('projectDetailComponent', {
 
     $scope.saveSupplyList = function(project) {
       console.log($scope.supplyFields);
-
       const supplyItems = [];
+
       angular.forEach($scope.supplyFields, (field) => {
         if (field.itemName) {
-          //create an item set done to false, not checked
-          //checked done = true
+          // create an item set done to false, not checked
+          // checked done = true
           supplyItems.push({ name: field.itemName, done: false });
         }
       });
 
-      //Add array of supplies to the project object
-      //before patch request
+      // Add array of supplies to the project object
+      // before patch request
       project.supplies = supplyItems;
 
       projectFactory.editProject($scope.projectId, project)
-      .then((data) => {
-        console.log('updateProject: ', data);
-        $window.Materialize.toast('Supply list added!', 2000);
-      });
+        .then((data) => {
+          console.log('updateProject: ', data);
+          $window.Materialize.toast('Supply list added!', 2000);
+        });
     };
 
     $scope.deleteProject = function(project) {
@@ -83,12 +105,13 @@ bobbin.component('projectDetailComponent', {
           $state.go('projects.items');
         });
     };
+
     $scope.deleteItem = function(project, index) {
       // debugger;
       project.supplies.splice(index, 1);
-      angular.forEach(project.supplies, (supply) => {
-        delete supply.$$hashKey;
-      });
+
+      project.supplies = $scope.deleteHashKeys(project.supplies);
+
       // debugger;
       // console.log(project);
       // console.log(index);
@@ -97,26 +120,34 @@ bobbin.component('projectDetailComponent', {
         .then((data) => {
           // debugger;
           // console.log(data);
-          // debugger;
           $state.go('projects.detail');
         });
       // console.log(index);
     };
 
-    //looping over over to delete hashkeys from {}
+    // looping over over to delete hashkeys from {}
     $scope.toggleSupplyItem = function(project) {
-      angular.forEach(project.supplies, (supply) => {
-        delete supply.$$hashKey;
-      });
+      project.supplies = $scope.deleteHashKeys(project.supplies);
       // debugger;
       projectFactory.editProject($state.params.projectId, project)
-      .then((data) => {
-        $window.Materialize.toast('Project Updated!', 2000);
-      });
+        .then((data) => {
+          $window.Materialize.toast('Project Updated!', 2000);
+        });
     };
 
     $scope.toggleItem = function (item) {
       console.log(item);
+    };
+
+    $scope.deleteHashKeys = function(supplies) {
+      let suppliesArray = [];
+
+      angular.forEach(supplies, (supply) => {
+        delete supply.$$hashKey;
+        suppliesArray.push(supply);
+      });
+
+      return suppliesArray;
     };
   }
 });
