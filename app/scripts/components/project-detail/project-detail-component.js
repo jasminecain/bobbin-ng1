@@ -15,14 +15,12 @@ bobbin.component('projectDetailComponent', {
     $scope.getProject = function(projectId) {
       projectFactory.getSingleProject(projectId)
         .then((data) => {
-          debugger;
           console.log('SingleProject: ', data);
           $scope.project = data;
         });
     };
 
     $scope.uploadFile = function(file, project) {
-      debugger;
       // converting file to base64
       Upload.base64DataUrl(file).then(function(base64) {
 
@@ -31,7 +29,10 @@ bobbin.component('projectDetailComponent', {
         }
 
         project.photos.push(base64);
-        project.supplies = $scope.deleteHashKeys(project.supplies);
+        // if supplies property exists on project; check for supply items
+        if (project.supplies && project.supplies.length) {
+          project.supplies = $scope.deleteHashKeys(project.supplies);
+        }
 
         projectFactory.editProject($scope.projectId, project)
           .then((data) => {
@@ -57,7 +58,7 @@ bobbin.component('projectDetailComponent', {
     $scope.addNextItem = function(e) {
       // if enterkey pressed & there's a value is not equal to empty ''
       // do not want to fire if there's no value
-      if(e.which === 13 && e.currentTarget.value !== '') {
+      if (e.which === 13 && e.currentTarget.value !== '') {
         const supplies = [];
         let fieldId = `field${$scope.supplyFields.length + 1}`;
         console.log(fieldId);
@@ -75,8 +76,8 @@ bobbin.component('projectDetailComponent', {
 
     $scope.saveSupplyList = function(project) {
       console.log($scope.supplyFields);
-
       const supplyItems = [];
+
       angular.forEach($scope.supplyFields, (field) => {
         if (field.itemName) {
           // create an item set done to false, not checked
@@ -129,9 +130,9 @@ bobbin.component('projectDetailComponent', {
       project.supplies = $scope.deleteHashKeys(project.supplies);
       // debugger;
       projectFactory.editProject($state.params.projectId, project)
-      .then((data) => {
-        $window.Materialize.toast('Project Updated!', 2000);
-      });
+        .then((data) => {
+          $window.Materialize.toast('Project Updated!', 2000);
+        });
     };
 
     $scope.toggleItem = function (item) {

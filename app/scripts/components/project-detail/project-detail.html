@@ -1,12 +1,12 @@
-<div class="container col s12 m4 l8">
-  <div class="progress-container">
+<div class="container col s12 m4 l8" ng-init="init()">
+  <!-- <div class="progress-container">
     <div class="progress">
       <div class="indeterminate"></div>
     </div>
-  </div>
-  <h3 ng-init="init()">{{ project.title }}</h3>
+  </div> -->
+  <h3>{{ project.title }}</h3>
   <div class="col">
-    <button class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
+    <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadFile($file, project)" accept="image/jpg, image/png">
       Upload Photo
     </button>
   </div>
@@ -32,8 +32,8 @@
       <div class="row">
         <!-- track by $index is tracking each item by index to allow dupes and prevent dupe error-->
         <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
-          <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}"></div>
-          <!-- <img ng-src="{{photo}}"> -->
+          <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}">
+          </div>
         </div>
       </div>
 
@@ -57,16 +57,14 @@
                 <i class="material-icons icon-red delete-items" ng-click="deleteItem(project, $index)">highlight_off</i>
               </p>
             </form>
-          </p>
-        </div>
-        <div class="card-action">
-          <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
-          <!-- <i class="material-icons" ng-click="emailShare(project)">email</i> -->
+            <div class="card-action">
+              <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
+              <!-- <i class="material-icons" ng-click="emailShare(project)">email</i> -->
+            </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 <!-- Add Supply Items Modal -->
 <div id="addSuppliesModal" class="modal">

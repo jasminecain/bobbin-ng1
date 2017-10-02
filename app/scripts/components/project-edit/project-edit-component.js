@@ -3,12 +3,12 @@
 bobbin.component('editProjectComponent', {
 
   templateUrl: 'app/scripts/components/project-edit/project-edit.html',
-  controller: function(authFactory, projectFactory, $state, $scope, $window, $timeout) {
+  controller: function(authFactory, projectFactory, $state, $scope, $window, $timeout, Upload) {
 
     $scope.supplyFields =[{ id: 'editField1' }];
 
     $scope.init = function() {
-      // Grabbing params of projectId on the current state
+      // Grabbing params of projectId on the current state and displaying the project
       $scope.getProject($state.params.projectId);
     };
 
@@ -42,6 +42,9 @@ bobbin.component('editProjectComponent', {
     $scope.updateProject = function(project) {
       console.log($scope.supplyFields);
 
+      if(!project.supplies) {
+        project.supplies = [];
+      }
       // Building a new object to push newSupply into project.supplies
       angular.forEach($scope.supplyFields, (supply) => {
         if (supply.itemName) {
@@ -55,10 +58,7 @@ bobbin.component('editProjectComponent', {
         }
       });
 
-      // Looping over supplies to delete $$hashKey from {} to correctly target
-      angular.forEach(project.supplies, (supply) => {
-        delete supply.$$hashKey;
-      });
+      project.supplies = $scope.deleteHashKeys(project.supplies);
       debugger;
       projectFactory.editProject($state.params.projectId, project)
         .then((data) => {
@@ -67,6 +67,31 @@ bobbin.component('editProjectComponent', {
           console.log('updateProject: ', data);
           $window.Materialize.toast('Project Updated!', 2000);
         });
+    };
+
+    $scope.uploadFile = function(file, project) {
+      if (file) {
+        // converting file to base64
+        Upload.base64DataUrl(file).then(function(base64) {
+          if (!project.photos) {
+            project.photos = [];
+          }
+
+          project.photos.push(base64);
+        });
+      }
+    };
+
+    $scope.deleteHashKeys = function(supplies) {
+      let suppliesArray = [];
+
+      // Looping over supplies to delete $$hashKey from {} to correctly target
+      angular.forEach(supplies, (supply) => {
+        delete supply.$$hashKey;
+        suppliesArray.push(supply);
+      });
+
+      return suppliesArray;
     };
 
     $scope.backBtn = function() {

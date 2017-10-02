@@ -25,40 +25,40 @@ bobbin.factory('projectFactory', function($q, $http, FBCreds) {
   const addProject = function(obj) {
     let newObj = JSON.stringify(obj);
     return $http.post(`${FBCreds.databaseURL}/projects.json`, newObj)
-    .then((data) => {
-      return data;
-    }, (error) => {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      console.log('error', errorCode, errorMessage);
-    });
+      .then((data) => {
+        return data;
+      }, (error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log('error', errorCode, errorMessage);
+      });
   };
 
   const editProject = function(projectId, projectObj) {
     // console.log('id and object', projectId, projectObj);
     return $q((resolve, reject) => {
       let newObj = JSON.stringify(projectObj);
-      $http.patch(`${FBCreds.databaseURL}/projects/${projectId}.json`, newObj)
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error);
-        console.log('editProjectError', error);
-      });
+      $http.put(`${FBCreds.databaseURL}/projects/${projectId}.json`, newObj)
+        .then((project) => {
+          resolve(project.data);
+        })
+        .catch((error) => {
+          reject(error);
+          console.log('editProjectError', error);
+        });
     });
   };
 
   const getSingleProject = function(projectId) {
     return $q((resolve, reject) => {
       $http.get(`${FBCreds.databaseURL}/projects/${projectId}.json`)
-      .then((project) => {
-        resolve(project.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        reject(error);
-      });
+        .then((project) => {
+          resolve(project.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
     });
   };
 
