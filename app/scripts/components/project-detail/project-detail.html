@@ -14,7 +14,7 @@
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
-          <img ng-src="{{ project.img }}">
+          <img materialboxed class="materialboxed responsive-img" ng-src="{{ project.img }}">
         </div>
         <div class="card-content">
           <p>{{ project.description }}</p>
@@ -31,13 +31,12 @@
       <div class="row">
         <!-- track by $index is tracking each item by index to allow dupes and prevent dupe error-->
         <div class="col s4 project-photo-container" ng-repeat="photo in project.photos track by $index">
-          <div class="project-photo" ng-style="{'background-image':'url(' + photo + ')'}">
-            <ul class="list-item-image-tools hover-display" data-action="list-tools">
+          <div materialboxed class="materialboxed responsive-img project-photo" ng-style="{'background-image':'url(' + photo + ')'}">
+            <!-- <ul class="list-item-image-tools hover-display" data-action="list-tools">
               <li class="tool-delete" data-action="delete">
-                <i class="material-icons" ng-click="deletePhoto(project, $index)">delete_forever</i>
-                <span class="label label-delete">Delete</span>
+                <i class="material-icons hover-display right" ng-click="deletePhoto(project, $index)">delete_forever</i>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>

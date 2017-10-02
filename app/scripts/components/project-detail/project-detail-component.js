@@ -144,10 +144,10 @@ bobbin.component('projectDetailComponent', {
       // debugger;
       project.photos.splice(index, 1);
       project.supplies = $scope.deleteHashKeys(project.supplies);
-      debugger;
+      // debugger;
       projectFactory.editProject($scope.projectId, project)
         .then((data) => {
-          debugger;
+          // debugger;
           $state.go('projects.detail');
         });
       $window.Materialize.toast('Photo deleted!', 2000);

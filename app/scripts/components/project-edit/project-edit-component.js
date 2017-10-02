@@ -59,7 +59,7 @@ bobbin.component('editProjectComponent', {
       });
 
       project.supplies = $scope.deleteHashKeys(project.supplies);
-      debugger;
+      // debugger;
       projectFactory.editProject($state.params.projectId, project)
         .then((data) => {
           // Resetting supplyFields to 1
@@ -84,7 +84,7 @@ bobbin.component('editProjectComponent', {
     };
 
     $scope.deletePhoto = function(project, index) {
-      debugger;
+      // debugger;
       project.photos.splice(index, 1);
 
       // project.photos = $scope.deleteHashKeys(project.photos);
