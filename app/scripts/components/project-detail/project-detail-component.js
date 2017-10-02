@@ -109,7 +109,7 @@ bobbin.component('projectDetailComponent', {
     $scope.deleteItem = function(project, index) {
       // debugger;
       project.supplies.splice(index, 1);
-        $window.alert('Are you sure you want to delete this item?');
+        $window.alert('You will be deleting this item forever!');
       project.supplies = $scope.deleteHashKeys(project.supplies);
 
 
