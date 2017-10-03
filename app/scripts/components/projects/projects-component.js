@@ -6,6 +6,7 @@ bobbin.component('projectsComponent', {
   controller: function(authFactory, projectFactory, $state, $scope, $window) {
 
     let user = authFactory.getCurrentUser();
+    $scope.deleteItem = null;
 
     $scope.init = function() {
       $scope.showAllProjects();
@@ -33,7 +34,16 @@ bobbin.component('projectsComponent', {
         });
     };
 
+    // function created; which project to delete
+    // gain access to project outside of ng-repeat
+    $scope.selectProjectForDelete = function(project) {
+      // debugger;
+      // project is accessible when passed into $scope.deleteItem
+      $scope.deleteItem = project;
+    };
+
     $scope.deleteProject = function(project) {
+      // debugger;
       projectFactory.deleteProject(project.id)
         .then(() => {
           $scope.showAllProjects();
@@ -46,6 +56,10 @@ bobbin.component('projectsComponent', {
 
     $scope.emailShare = function(project) {
       $window.open('mailto:' + '' + '?subject=' + 'Check out my latest project' + '&body=' + project.title + ' - ' + project.url, '_self');
+    };
+
+    $scope.NoBackBtn = function(project) {
+      $scope.showAllProjects();
     };
   }
 });
