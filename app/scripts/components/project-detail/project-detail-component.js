@@ -109,7 +109,7 @@ bobbin.component('projectDetailComponent', {
     $scope.deleteItem = function(project, index) {
       // debugger;
       project.supplies.splice(index, 1);
-        $window.alert('You will be deleting this item forever!');
+        // $window.alert('You will be deleting this item forever!');
       project.supplies = $scope.deleteHashKeys(project.supplies);
 
 
@@ -121,6 +121,7 @@ bobbin.component('projectDetailComponent', {
         .then((data) => {
           // debugger;
           // console.log(data);
+          $window.Materialize.toast('Item deleted!', 2000);
           $state.go('projects.detail');
         });
       // console.log(index);
@@ -138,6 +139,10 @@ bobbin.component('projectDetailComponent', {
 
     $scope.toggleItem = function (item) {
       console.log(item);
+    };
+
+    $scope.NoBackBtn = function(project) {
+      $state.go('projects.detail');
     };
 
     $scope.deletePhoto = function(project, index) {

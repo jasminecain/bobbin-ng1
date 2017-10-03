@@ -73,15 +73,30 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4" ui-sref="projects.detail({ projectId: project.id })">{{ project.title }}</span>
           <p>{{ project.description }}</p>
-          <p><a href="{{ project.url }}">{{ project.url }}</a></p>
+          <p><a href="{{ project.url }}" target="_blank">{{ project.url }}</a></p>
         </div>
         <div class="card-action">
           <!-- function: passing in project id as params -->
           <!-- <i class="material-icons" ui-sref="projects.detail({ projectId: project.id })">mode_edit</i> -->
-          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+
+          <!-- DELETE MODAL TRIGGER -->
+          <div class="col">
+            <!-- created a new function to gain access to projects -->
+            <i class="material-icons" data-target="deleteProjectModal" modal ng-click="selectProjectForDelete(project)">highlight_off</i>
+          </div>
           <i class="material-icons" ng-click="emailShare(project)">email</i>
         </div>
         </div>
+      </div>
+    </div>
+
+    <div id="deleteProjectModal" class="modal">
+      <div class="modal-content">
+        <p>Are you sure you want to delete this project? It will be gone forever!</p>
+        <!-- by passing in deleteItem, projects is now accessible; this is not done in ng-repeat to avoid repeats -->
+        <button type="submit" class="waves-effect light-blue btn modal-close yes-modal"
+        ng-click="deleteProject(deleteItem)">Yes</button>
+        <button type="button" class="waves-effect red btn modal-close no-modal" ng-click="NoBackBtn()">No</button>
       </div>
     </div>
   </div>

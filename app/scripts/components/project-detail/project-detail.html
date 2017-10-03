@@ -5,11 +5,6 @@
     </div>
   </div> -->
   <h3>{{ project.title }}</h3>
-  <div class="col">
-    <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadPhoto($file, project)" accept="image/jpg, image/png"> Upload Photo
-    </button>
-  </div>
-
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
@@ -18,13 +13,22 @@
         </div>
         <div class="card-content">
           <p>{{ project.description }}</p>
-          <p><a href="{{ project.url }}">{{ project.url }}</a></p>
+          <p><a href="{{ project.url }}" target="_blank">{{ project.url }}</a></p>
         </div>
         <div class="card-action">
           <i class="material-icons" ng-click="toEditProjectView()">mode_edit</i>
-          <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i>
+          <!-- DELETE MODAL TRIGGER -->
+          <i class="material-icons" data-target="deleteProjectModal" modal>highlight_off</i>
           <i class="material-icons icon-black print-icon" ng-click="printSupplyList()">print</i>
           <i class="material-icons" ng-click="emailShare(project)">email</i>
+        </div>
+      </div>
+      <div id="deleteProjectModal" class="modal">
+        <div class="modal-content">
+          <p>Are you sure you want to delete this project? It will be gone forever!</p>
+          <button type="submit" class="waves-effect light-blue btn modal-close yes-modal"
+          ng-click="deleteProject(project)">Yes</button>
+          <button type="button" class="waves-effect light-blue btn modal-close no-modal" ng-click="NoBackBtn()">No</button>
         </div>
       </div>
 
@@ -39,6 +43,11 @@
             </ul> -->
           </div>
         </div>
+      </div>
+      <div class="col">
+        <i class="material-icons upload-photo" ngf-select="uploadPhoto($file, project)" accept="image/jpg, image/png">add_a_photo</i>
+        <!-- <button type="button" class="btn waves-effect btn-create light-blue" ngf-select="uploadPhoto($file, project)" accept="image/jpg, image/png"> Upload Photo
+        </button> -->
       </div>
 
       <!-- <photo-gallery-component></photo-gallery-component> -->
@@ -58,13 +67,22 @@
                 <!-- grabs index of the array from ng-repeat; id & for -->
                 <input type="checkbox" id="{{$index}}" class="filled-in" ng-model="item.done" ng-change="toggleSupplyItem(project)" />
                 <label for="{{$index}}">{{item.name}}</label>
-                <i class="material-icons icon-red delete-items" ng-click="deleteItem(project, $index)">highlight_off</i>
+                <!-- DELETE MODAL TRIGGER -->
+                <i class="material-icons icon-red delete-items" data-target="deleteItemModal" modal>highlight_off</i>
               </p>
             </form>
             <div class="card-action">
               <!-- <i class="material-icons" ng-click="deleteProject(project)">highlight_off</i> -->
               <!-- <i class="material-icons" ng-click="emailShare(project)">email</i> -->
             </div>
+        </div>
+      </div>
+      <div id="deleteItemModal" class="modal">
+        <div class="modal-content">
+          <p>Are you sure you want to delete this item? It will be gone forever!</p>
+          <button type="submit" class="waves-effect light-blue btn modal-close yes-modal"
+          ng-click="deleteItem(project, $index)">Yes</button>
+          <button type="button" class="waves-effect light-blue btn modal-close no-modal" ng-click="NoBackBtn()">No</button>
         </div>
       </div>
     </div>
